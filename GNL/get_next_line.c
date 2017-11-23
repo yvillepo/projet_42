@@ -64,7 +64,10 @@ static t_fd		*search_fd(int fd, t_list **head)
 		l_fd = l_fd->next;
 	}
 	fd_str = new_struct_fd(fd);
-	ft_lstadd(head, ft_lstnew(fd_str, sizeof(fd_str)));
+	if (*head)
+		ft_lstadd(head, ft_lstnew(fd_str, sizeof(fd_str)));
+	else
+		*head = ft_lstnew(fd_str, sizeof(fd_str));
 	return (fd_str);
 }
 
@@ -93,4 +96,16 @@ int get_next_line(const int fd, char **line)
 	 if ((*line = sub_first_line(&(fd_str->str))))
 		 return (1);
 	return (read_jump_line(fd_str, line));
+}
+
+int main(int ac char **av)
+{
+	int 	i = 3;
+	t_list	*l;
+
+	while (i--)
+	{
+		search_fd(i, &l);
+	}
+	return (0);
 }
