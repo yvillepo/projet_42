@@ -1,0 +1,3 @@
+[submodule "fractol/Libft"]
+	path = fractol/Libft
+	url = https://github.com/yvillepo/Libft.git
