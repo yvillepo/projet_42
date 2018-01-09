@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:56:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2017/12/19 07:55:01 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/09 21:07:19 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct		s_lstr
 	char			*str;
 	struct s_lstr	*next;
 }					t_lstr;
+
+typedef struct		s_complex
+{
+	double			r;
+	double			i;
+}					t_complex;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
@@ -60,6 +66,7 @@ int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 void				*ft_memalloc(size_t size);
+void				*ft_malloc(size_t size);
 void				ft_memdel(void **ap);
 char				*ft_strnew(size_t size);
 void				ft_strdel(char **as);
@@ -105,5 +112,9 @@ int					ft_strcmpt(char *str, char c);
 double				ft_absd(double n);
 int					ft_max(int x1, int x2);
 int					ft_min(int x1, int x2);
+t_complex			add_complex(t_complex *z1, t_complex *z2);
+t_complex			mult_complex(t_complex *z1, t_complex *z2);
+t_complex			*new_complex(double r, double i);
+double				mod2(t_complex *z1);
 
 #endif
