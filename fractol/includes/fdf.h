@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/09 18:36:42 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/11 20:12:20 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define T_D 2
 # define MAX_HEIGHT 1320
 # define MAX_WIDTH 2550
-# define CENTER_X MAX_WIDTH/ 2
+# define CENTER_X MAX_WIDTH / 2
 # define CENTER_Y MAX_HEIGHT / 2
 # define ITERATION_MAX 50
 # define PI 3.1415926535897932384

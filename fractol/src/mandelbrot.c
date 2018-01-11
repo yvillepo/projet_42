@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/09 21:09:08 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/11 20:38:29 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,13 @@ int		is_limited(t_complex *c)
 		i--;
 	}
 	return (1);
+}
+
+int		*mandelbrot_image(t_complex *c1, t_complex *c2)
+{
+	double		dx;
+	double		dy;
+
+	dx = c2->r - c1->r;
+	dy = c2->i - c1->i;
 }
