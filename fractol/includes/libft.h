@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:56:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/09 21:07:19 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/13 01:22:46 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ int					ft_strcmpt(char *str, char c);
 double				ft_absd(double n);
 int					ft_max(int x1, int x2);
 int					ft_min(int x1, int x2);
+double				ft_min_double(int x1, int x2);
+double				ft_max_double(int x1, int x2);
 t_complex			add_complex(t_complex *z1, t_complex *z2);
 t_complex			mult_complex(t_complex *z1, t_complex *z2);
 t_complex			*new_complex(double r, double i);
