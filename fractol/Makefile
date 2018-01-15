@@ -6,7 +6,7 @@
 #    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2018/01/13 00:29:30 by yvillepo         ###   ########.fr        #
+#    Updated: 2018/01/16 00:29:06 by yvillepo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,15 @@ SRC = main.c \
 	  affiche.c \
 	  init.c \
 	  mandelbrot.c \
-	  hook.c
+	  hook.c \
+	  zomm.c \
+	  util.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
 CC		= gcc
-CFLAGS	= #-Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra #-Werror 
 
 # mlx library
 FRAMEWORK	=  -framework OpenGL -framework AppKit

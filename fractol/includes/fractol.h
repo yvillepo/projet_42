@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/13 01:31:27 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/16 00:27:35 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,17 @@
 # define ITERATION_MAX 50
 # define PI 3.1415926535897932384
 
-typedef double		t_point;
-
 typedef union		u_color
 {
 	char			rgb[4];
 	unsigned int	color;
 }					t_color;
 
-typedef struct		s_point3d
+typedef struct		s_point
 {
-	t_point				x;
-	t_point				y;
-	t_point				z;
-	t_color				c;
-}					t_point3d;
+	double				x;
+	double				y;
+}					t_point;
 
 typedef struct		s_image
 {
@@ -62,6 +58,9 @@ typedef struct		s_mlx
 {
 	void			*mlx;
 	void			*win;
+	t_complex		*c1;
+	t_complex		*c2;
+	double			quantum;
 	t_image			image;
 }					t_mlx;
 
@@ -70,7 +69,14 @@ void				fill_pixel(t_mlx *mlx, int x, int y,
 		unsigned int color);
 t_mlx				*init(int ac, char **av);
 void				affiche(t_mlx *mlx);
-void				mandelbrot_image(t_mlx *mlx, t_complex *c1, t_complex *c2);
+void				mandelbrot_image(t_mlx *mlx);
+void				centre(t_mlx *mlx);
 int					key_hook(int keycode, void **p);
+void				zoom(t_mlx *mlx, double zoom, t_point *zoom_point);
+t_point				*new_point(int x, int y);
+int					mouse_hook(int button, int x, int y, void *param);
+void				affiche_mlx(t_mlx *mlx);
+void				mandelbrot_image1(t_mlx *mlx,t_complex *c1,t_complex *c2);
+void				mlx_free(t_mlx **m);
 
 #endif
