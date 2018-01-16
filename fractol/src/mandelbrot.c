@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/16 00:14:06 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/16 04:44:07 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void		centre(t_mlx *mlx)
 			(mlx->c2->i - mlx->c1->i) / MAX_HEIGHT);
 	if ((mlx->c2->r - mlx->c1->r) / MAX_WIDTH < (mlx->c2->i - mlx->c1->i) / MAX_HEIGHT)
 	{
-		mlx->c1->r = mlx->c1->r - (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2;
-		mlx->c2->r = mlx->c2->r + (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2;
+		mlx->c1->r = mlx->c1->r - (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
+		mlx->c2->r = mlx->c2->r + (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
 	}
 	else
 	{
-		mlx->c1->i = mlx->c1->i + ((mlx->c2->i - mlx->c1->i) - (MAX_HEIGHT * mlx->quantum)) / 2;
-		mlx->c2->i = mlx->c2->i - ((mlx->c2->i - mlx->c1->i) - (MAX_HEIGHT * mlx->quantum)) / 2;
+		mlx->c1->i = mlx->c1->i + ((mlx->c2->i - mlx->c1->i) - (MAX_HEIGHT * mlx->quantum)) / 2.0;
+		mlx->c2->i = mlx->c2->i - ((mlx->c2->i - mlx->c1->i) - (MAX_HEIGHT * mlx->quantum)) / 2.0;
 	}
 }
 
@@ -66,9 +66,9 @@ void		mandelbrot_image(t_mlx *mlx)
 		while (x < MAX_WIDTH)
 		{
 			if (is_limited(&c))
-			{
 				fill_pixel(mlx, x, y, 0xFFFFFF);
-			}
+			else
+				fill_pixel(mlx, x, y, 0x000000);
 			c.r += mlx->quantum;
 			x++;
 		}
