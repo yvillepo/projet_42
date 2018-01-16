@@ -29,8 +29,8 @@ void			fill_pixel(t_mlx *mlx, int x1,
 	int		x;
 	int		y;
 
-	x = x1 ;
-	y = y1 ;
+	x = x1;
+	y = y1;
 	if (x >= MAX_WIDTH || y >= MAX_HEIGHT || x <= 0 || y <= 0)
 		return ;
 	mlx->image.im[x + y * MAX_WIDTH] = color;

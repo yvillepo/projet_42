@@ -39,10 +39,9 @@ void		centre(t_mlx *mlx)
 			(mlx->c2->i - mlx->c1->i) / MAX_HEIGHT);
 	if ((mlx->c2->r - mlx->c1->r) / MAX_WIDTH < (mlx->c2->i - mlx->c1->i) / MAX_HEIGHT)
 	{
-		mlx->c1->r = mlx->c1->r + ((mlx->c2->r - mlx->c1->r) - (MAX_WIDTH * mlx->quantum)) / 2;
-		mlx->c2->r = mlx->c2->r - ((mlx->c2->r - mlx->c1->r) - (MAX_WIDTH * mlx->quantum)) / 2;
+		mlx->c1->r = mlx->c1->r - (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2;
+		mlx->c2->r = mlx->c2->r + (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2;
 	}
-		
 	else
 	{
 		mlx->c1->i = mlx->c1->i + ((mlx->c2->i - mlx->c1->i) - (MAX_HEIGHT * mlx->quantum)) / 2;
@@ -58,7 +57,8 @@ void		mandelbrot_image(t_mlx *mlx)
 
 	c.i = mlx->c1->i;
 	y = 0;
-//	printf("c = c1 = %f %f, quantum = %lf\n",c.r, c.i, mlx->quantum);
+	printf("c = c1 = %f %f, c2 = %f %f quantum = %lf\n",mlx->c1->r, mlx->c1->i,
+				   mlx->c2->r, mlx->c2->i, mlx->quantum);
 	while (y < MAX_HEIGHT)
 	{
 		x = 0;
