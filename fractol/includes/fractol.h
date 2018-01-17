@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/17 11:54:07 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/17 11:55:34 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct		s_mlx
 	t_complex		*c1;
 	t_complex		*c2;
 	double			quantum;
-	int				bizarrw;
 	t_image			image;
 	int				width;
 	int				height;

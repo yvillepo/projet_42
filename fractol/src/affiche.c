@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 00:38:11 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/16 04:33:49 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/17 12:13:27 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ unsigned int	*new_image(t_mlx *mlx, void **image)
 	int	b;
 	int c;
 
-	*image = mlx_new_image(mlx->mlx, MAX_WIDTH, MAX_HEIGHT);
+	*image = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
 	return ((unsigned int*)mlx_get_data_addr(*image, &a, &b, &c));
 }
 
@@ -31,14 +31,9 @@ void			fill_pixel(t_mlx *mlx, int x1,
 
 	x = x1;
 	y = y1;
-	if (x >= MAX_WIDTH || y >= MAX_HEIGHT || x <= 0 || y <= 0)
+	if (x >= mlx->width || y >= mlx->height || x <= 0 || y <= 0)
 		return ;
-	mlx->image.im[x + y * MAX_WIDTH] = color;
-}
-
-void			clear_im(unsigned int *im)
-{
-	ft_bzero(im, MAX_HEIGHT * MAX_WIDTH * sizeof(*im));
+	mlx->image.im[x + y * mlx->width] = color;
 }
 
 void			affiche(t_mlx *mlx)

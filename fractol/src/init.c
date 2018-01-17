@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:42:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/17 10:57:09 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/17 12:19:22 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,29 @@ void	init_mlx(t_mlx **mlx)
 	m->image.im = new_image(m, &(m->image.pim));
 }
 
+void	init_fractol(t_mlx *mlx, int ac, char **av)
+{
+	if (ac >= 3)
+		mlx->iteration = ft_atoi(av[3]);
+	else
+		mlx->iteration = ITERATION_MAX;
+	if (ac == 4)
+	{
+		mlx->width = ft_atoi(av[4]);
+		mlx->height = ft_atoi(av[4]);
+	}
+	else if (ac >= 5)
+	{
+		mlx->width = ft_atoi(av[4]);
+		mlx->height = ft_atoi(av[5]);
+	}
+	else
+	{
+		mlx->width = DEFAULT_WIDTH;
+		mlx->height = DEFAULT_HEIGHT;
+	}
+}
+
 t_mlx	*init(int ac, char **av)
 {
 	t_mlx	*m;
@@ -34,7 +57,6 @@ t_mlx	*init(int ac, char **av)
 		exit_error("nb arg");
 	m = ft_memalloc(sizeof(*m));
 	init_mlx(&m);
-//	m->width = DEFAULT_WIDTH;
-//	m->height = DEFAULT_HEIGHT;
+	init_fractol(m, ac, av);
 	return (m);
 }
