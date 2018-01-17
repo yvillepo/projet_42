@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/16 00:27:35 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/17 11:54:07 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define T_W 13
 # define T_S 1
 # define T_D 2
+# define DEFAULT_WIDTH 800
+# define DEFAULT_HEIGHT 800
 # define CENTER_X MAX_WIDTH / 2
 # define CENTER_Y MAX_HEIGHT / 2
 # define ITERATION_MAX 50
@@ -61,8 +63,13 @@ typedef struct		s_mlx
 	t_complex		*c1;
 	t_complex		*c2;
 	double			quantum;
+	int				bizarrw;
 	t_image			image;
+	int				width;
+	int				height;
+	int				iteration;
 }					t_mlx;
+
 
 unsigned int		*new_image(t_mlx *mlx, void **image);
 void				fill_pixel(t_mlx *mlx, int x, int y,
