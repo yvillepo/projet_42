@@ -38,5 +38,7 @@ void			fill_pixel(t_mlx *mlx, int x1,
 
 void			affiche(t_mlx *mlx)
 {
+	printf("affiche \n");
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image.pim, 0, 0);
+	printf("fin haffiche \n");
 }
