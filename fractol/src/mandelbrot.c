@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/16 04:44:07 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 04:37:30 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 #include "fractol.h"
 #include <stdio.h>
 
-int			is_limited(t_complex *c)
+
+int			is_limited(t_complex *c, int iteration_max)
 {
 	int			i;
 	t_complex	*z;
 
-	i = ITERATION_MAX;
+	i = 0;
 	z = new_complex(0, 0);
-	while(i--)
+	while(i++ < iteration_max)
 	{
 		*z = mult_complex(z, z);
 		*z = add_complex(z, c);
 		//printf("%f\n", mod2(z));
 		if (mod2(z) > 4)
-			return (0);
+			return (color1((float)i / (float)iteration_max));
 	}
-	return (1);
+	return (0);
 }
 
 void		centre(t_mlx *mlx)
@@ -65,10 +66,7 @@ void		mandelbrot_image(t_mlx *mlx)
 		c.r = mlx->c1->r;
 		while (x < MAX_WIDTH)
 		{
-			if (is_limited(&c))
-				fill_pixel(mlx, x, y, 0xFFFFFF);
-			else
-				fill_pixel(mlx, x, y, 0x000000);
+			fill_pixel(mlx, x, y, is_limited(&c, ITERATION_MAX));
 			c.r += mlx->quantum;
 			x++;
 		}
@@ -76,36 +74,5 @@ void		mandelbrot_image(t_mlx *mlx)
 		y++;
 	}
 	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->c2->r, mlx->c2->i);
-	affiche(mlx);
-}
-
-void		mandelbrot_image1(t_mlx *mlx, t_complex *c1, t_complex *c2)
-{
-	int		x;
-	int		y;
-	double		quantum_x;
-	double		quantum_y;
-	t_complex	c;
-
-	quantum_x = (c2->r - c1->r) / MAX_WIDTH;
-	quantum_y = (c2->i - c1->i) / MAX_HEIGHT;
-	c = *c1;
-	y = 0;
-	while (y < MAX_HEIGHT)
-	{
-		x = 0;
-		c.r = c1->r;
-		while (x < MAX_WIDTH)
-		{
-			if (is_limited(&c))
-			{
-				fill_pixel(mlx, x, y, 0xFFFFFF);
-			}
-			c.r += quantum_x;
-			x++;
-		}
-		c.i += quantum_y;
-		y++;
-	}
 	affiche(mlx);
 }

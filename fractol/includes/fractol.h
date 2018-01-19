@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/16 00:27:35 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 04:27:04 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 typedef union		u_color
 {
-	char			rgb[4];
+	unsigned char	rgb[4];
 	unsigned int	color;
 }					t_color;
 
@@ -78,5 +78,7 @@ int					mouse_hook(int button, int x, int y, void *param);
 void				affiche_mlx(t_mlx *mlx);
 void				mandelbrot_image1(t_mlx *mlx,t_complex *c1,t_complex *c2);
 void				mlx_free(t_mlx **m);
+unsigned int					color(float percent);
+unsigned int		color1(float percent);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 20:59:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/16 00:28:04 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 03:53:03 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ int		mouse_hook(int button, int x, int y, void *param)
 	t_mlx		*mlx;
 	
 	mlx = (t_mlx*)param;
-//	printf("button mouse %d", button);
 	p = new_point(x, y);
-	zoom(mlx, 1000, p); 
+	printf ("%d buttom \n", button);
+	if (button == 5 || button == 1)
+		zoom(mlx, 200, p); 
+	if (button == 4 || button == 2)
+		zoom(mlx, 50, p);
 	return (0);
 }
