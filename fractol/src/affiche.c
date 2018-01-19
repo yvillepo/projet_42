@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 00:38:11 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/17 12:13:27 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 02:45:33 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,5 @@ void			fill_pixel(t_mlx *mlx, int x1,
 
 void			affiche(t_mlx *mlx)
 {
-	printf("affiche \n");
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image.pim, 0, 0);
-	printf("fin haffiche \n");
 }

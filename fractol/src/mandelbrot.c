@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/17 12:48:54 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 02:32:36 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int			is_limited(t_complex *c, int iteration)
 		if (mod2(&z) > 4)
 			return (color(i, iteration));
 	}
-	printf("max\n");
-	return (0xFFFFFF);
+	return (0);
 }
 
 void		centre(t_mlx *mlx)
@@ -74,9 +73,6 @@ void		mandelbrot_image(t_mlx *mlx)
 			fill_pixel(mlx, x, y, is_limited(&c, mlx->iteration));
 			c.r += mlx->quantum;
 			x++;
-			printf("x %d y %d\n",x,y);
-			printf("c = c1 = %f %f, c2 = %f %f quantum = %lf, with %d, height %d, iteration %d\n",mlx->c1->r, mlx->c1->i,
-				mlx->c2->r, mlx->c2->i, mlx->quantum, mlx->width, mlx->height, mlx->iteration);
 		}
 		c.i += mlx->quantum;
 		y++;
