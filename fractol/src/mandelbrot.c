@@ -6,13 +6,12 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 02:32:36 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 03:18:57 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fractol.h"
-#include <stdio.h>
 
 int			color(int iteration, int iteration_max)
 {
@@ -78,36 +77,5 @@ void		mandelbrot_image(t_mlx *mlx)
 		y++;
 	}
 	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->c2->r, mlx->c2->i);
-	affiche(mlx);
-}
-
-void		mandelbrot_image1(t_mlx *mlx, t_complex *c1, t_complex *c2)
-{
-	int		x;
-	int		y;
-	double		quantum_x;
-	double		quantum_y;
-	t_complex	c;
-
-	quantum_x = (c2->r - c1->r) / mlx->width;
-	quantum_y = (c2->i - c1->i) / mlx->height;
-	c = *c1;
-	y = 0;
-	while (y < mlx->height)
-	{
-		x = 0;
-		c.r = c1->r;
-		while (x < mlx->width)
-		{
-			if (is_limited(&c, mlx->iteration))
-			{
-				fill_pixel(mlx, x, y, 0xFFFFFF);
-			}
-			c.r += quantum_x;
-			x++;
-		}
-		c.i += quantum_y;
-		y++;
-	}
 	affiche(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:42:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 03:02:07 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 03:11:54 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ void	init_mlx(t_mlx *m)
 				&& (m->win = mlx_new_window(m->mlx,
 						m->width, m->height, "mlx 42"))))
 		exit_error("init");
-	printf("fin init mlx\n");
 }
 
 void	init_fractol(t_mlx *mlx, int ac, char **av)
 {
-	printf("je suis con ou quoi %d %s \n%d\n",ac,av[2],ft_atoi(av[2]));
 	if (ac >= 3)
 	{
 		printf("%d\n",ft_atoi(av[2]));
