@@ -6,26 +6,24 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 20:59:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 03:53:03 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 06:17:21 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 
-int		key_hook(int keycode, void **p)
+int		key_hook(int keycode, void *p)
 {
 	t_mlx	*mlx;
 
-	mlx = (t_mlx*)(*p);
-	/*else if (keycode == PLUS)
-		zoom(mlx, 1.10);
-	else if (keycode == MOIN)
-		zoom(mlx, 0.90);
-		*/
+	mlx = (t_mlx*)(p);
+		printf ("c1 = %f\n",mlx->c1->r);
+	if (keycode >= LEFT || keycode <= UP)
+		translation(mlx, keycode, 0.10);
 	if (keycode == ECHAP)
 	{
-		mlx_free(*p);
+		mlx_free(&mlx);
 		exit(0);
 	}
 	return (0);

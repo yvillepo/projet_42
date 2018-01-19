@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 05:48:04 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 05:52:31 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int			is_limited(t_complex *c, int iteration_max)
 		//printf("%f\n", mod2(z));
 		if (mod2(z) > 4)
 		{
-			printf ("i %d , iteration max %d, %f\n",i, iteration_max, (double)i / (iteration_max));
 			return (color1(1.0 - (double)i / (iteration_max)));
 		}
 	}

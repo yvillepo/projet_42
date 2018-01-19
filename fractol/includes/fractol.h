@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 05:26:25 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 06:17:39 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_mlx				*init(int ac, char **av);
 void				affiche(t_mlx *mlx);
 void				mandelbrot_image(t_mlx *mlx);
 void				centre(t_mlx *mlx);
-int					key_hook(int keycode, void **p);
+int					key_hook(int keycode, void *p);
 void				zoom(t_mlx *mlx, double zoom, t_point *zoom_point);
 t_point				*new_point(int x, int y);
 int					mouse_hook(int button, int x, int y, void *param);
@@ -80,5 +80,6 @@ void				mandelbrot_image1(t_mlx *mlx,t_complex *c1,t_complex *c2);
 void				mlx_free(t_mlx **m);
 unsigned int					color(float percent);
 unsigned int		color1(double percent);
+void				translation(t_mlx *mlx, int key, double translation);
 
 #endif
