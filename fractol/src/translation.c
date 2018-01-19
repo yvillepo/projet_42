@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 05:02:10 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 06:14:26 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/19 06:42:16 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void		translation(t_mlx *mlx, int key, double translation)
 {
 	if (key == LEFT)
 	{
-		printf ("c1 = %f\n",mlx->c1->r);
 		translation = translation * (mlx->c1->r - mlx->c2->r);
-		printf ("trans :%f\n",translation);
 		mlx->c1->r += translation;
 		mlx->c2->r += translation;
 	}
