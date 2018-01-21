@@ -61,7 +61,6 @@ typedef struct		s_mlx
 	t_complex		*c1;
 	t_complex		*c2;
 	double			quantum;
-	int				cadoitreienchanger;
 	t_image			image;
 }					t_mlx;
 
