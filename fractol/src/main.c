@@ -19,8 +19,8 @@ int		main(int ac, char **av)
 	t_mlx		*mlx;
 
 	mlx = init(ac, av);
-	mlx->c1 = new_complex(-2.35, -1.6);
-	mlx->c2 = new_complex(0.85, 1.6);
+	mlx->c1 = new_complex(-2.05, -1.4);
+	mlx->c2 = new_complex(0.80, 1.4);
 	centre(mlx);
 	mandelbrot_image(mlx);
 //	mandelbrot_image1(mlx, mlx->c1, mlx->c2);

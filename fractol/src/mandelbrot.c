@@ -26,10 +26,8 @@ int			is_limited(t_complex *c, int iteration_max)
 	z.i = 0;
 	while(i++ < iteration_max)
 	{
-		//z = mult_complex(&z, &z);
-		//z = add_complex(&z, c);
 		tmp_z_r = z.r * z.r - z.i * z.i + c->r;
-		z.i = z.r * z.i + z.r * z.i + c->i;
+		z.i = 2 * z.r * z.i+ c->i;
 		z.r = tmp_z_r;
 		if (z.r * z.r + z.i * z.i > 4)
 			return (color1(/*1.0 - */(double)i / (iteration_max)));
@@ -62,8 +60,8 @@ void		mandelbrot_image(t_mlx *mlx)
 
 	c.i = mlx->c1->i;
 	y = 0;
-//	printf("c = c1 = %f %f, c2 = %f %f quantum = %lf\n",mlx->c1->r, mlx->c1->i,
-//				   mlx->c2->r, mlx->c2->i, mlx->quantum);
+	printf("c = c1 = %f %f, c2 = %f %f quantum = %lf\n",mlx->c1->r, mlx->c1->i,
+				   mlx->c2->r, mlx->c2->i, mlx->quantum);
 	while (y < MAX_HEIGHT)
 	{
 		x = 0;
@@ -77,6 +75,6 @@ void		mandelbrot_image(t_mlx *mlx)
 		c.i += mlx->quantum;
 		y++;
 	}
-//	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->c2->r, mlx->c2->i);
+	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->c2->r, mlx->c2->i);
 	affiche(mlx);
 }

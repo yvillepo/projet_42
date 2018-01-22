@@ -14,6 +14,7 @@ int			input_julia(int x, int y, t_mlx *mlx)
 {
 	mlx->julia->c->r = x * 2;
 	mlx->julia->c->i = y * 2 - 800;
+	julia_image(mlx);
 }
 
 int			is_limited(t_complex *z0, t_complex *c, int iteration_max)

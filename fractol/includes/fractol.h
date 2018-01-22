@@ -31,8 +31,6 @@
 # define T_W 13
 # define T_S 1
 # define T_D 2
-# define CENTER_X MAX_WIDTH / 2
-# define CENTER_Y MAX_HEIGHT / 2
 # define ITERATION_MAX 50
 # define PI 3.1415926535897932384
 
@@ -58,6 +56,9 @@ typedef struct		s_mlx
 {
 	void			*mlx;
 	void			*win;
+//	int				width;
+//	int				height;
+//	int				iteration;
 	t_complex		*c1;
 	t_complex		*c2;
 	double			quantum;
