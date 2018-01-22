@@ -12,8 +12,15 @@
 
 #include "fractol.h"
 #include "libft.h"
-
-t_mlx	*init(int ac, char **av)
+/*
+static void	init_fractol(t_mlx *mlx)
+{
+	mlx->width = ;
+	mlx->height = ;
+	mlx->iteration = ;
+}
+*/
+t_mlx		*init(int ac, char **av)
 {
 	t_mlx	*m;
 
