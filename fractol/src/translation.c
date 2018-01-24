@@ -6,38 +6,52 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 05:02:10 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 06:42:16 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/24 09:02:30 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		translation(t_mlx *mlx, int key, double translation)
+void		translation_base(t_complex *cmin, t_complex *cmax, int key, double translation)
 {
 	if (key == LEFT)
 	{
-		translation = translation * (mlx->c1->r - mlx->c2->r);
-		mlx->c1->r += translation;
-		mlx->c2->r += translation;
+		translation = translation * (cmin->r - cmax->r);
+		cmin->r += translation;
+		cmax->r += translation;
 	}
 	else if (key == RIGHT)
 	{
-		translation = translation * (mlx->c1->r - mlx->c2->r);
-		mlx->c1->r -= translation;
-		mlx->c2->r -= translation;
+		translation = translation * (cmin->r - cmax->r);
+		cmin->r -= translation;
+		cmax->r -= translation;
 	}
 	else if (key == UP)
 	{
-		translation = translation * (mlx->c1->i - mlx->c2->i);
-		mlx->c1->i += translation;
-		mlx->c2->i += translation;
+		translation = translation * (cmin->i - cmax->i);
+		cmin->i += translation;
+		cmax->i += translation;
 	}
 	else if (key == DOWN)
 	{
-		translation = translation * (mlx->c1->i - mlx->c2->i);
-		mlx->c1->i -= translation;
-		mlx->c2->i -= translation;
+		translation = translation * (cmin->i - cmax->i);
+		cmin->i -= translation;
+		cmax->i -= translation;
 	}
-	printf ("trans :%f\n",translation);
-	mandelbrot_image(mlx);
+}
+
+void		translation(t_mlx *mlx, int key, double translation)
+{
+	if (mlx->fractale == 0)
+	{
+		translation_base(mlx->mandelbrot->cmin, mlx->mandelbrot->cmax,
+				key, translation);
+		mandelbrot_image(mlx);
+	}
+	if (mlx->fractale == 1)
+	{
+		translation_base(mlx->julia->zmin, mlx->julia->zmax,
+				key, translation);
+		julia_image(mlx);
+	}
 }

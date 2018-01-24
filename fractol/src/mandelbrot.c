@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 10:54:14 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/24 09:03:37 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 
-int			is_limited(t_complex *c, int iteration_max, int order_color[3])
+static int			is_limited(t_complex *c, int iteration_max, int order_color[3])
 {
 	int			i;
 	t_complex	z;
@@ -37,21 +37,22 @@ int			is_limited(t_complex *c, int iteration_max, int order_color[3])
 
 void		centre(t_mlx *mlx)
 {
+	t_complex 	*cmin;
+	t_complex	*cmax;
 
-	mlx->quantum = ft_min_double((mlx->c2->r - mlx->c1->r) / mlx->width,
-			(mlx->c2->i - mlx->c1->i) / mlx->height);
-	if ((mlx->c2->r - mlx->c1->r) / mlx->width < (mlx->c2->i - mlx->c1->i) / mlx->height)
+	cmin = mlx->mandelbrot->cmin;
+	cmax = mlx->mandelbrot->cmax;
+	mlx->quantum = ft_min_double((cmax->r - cmin->r) / mlx->width,
+			(cmax->i - cmin->i) / mlx->height);
+	if ((cmax->r - cmin->r) / mlx->width < (cmax->i - cmin->i) / mlx->height)
 	{
-		mlx->c1->r = mlx->c1->r - (mlx->width * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
-		mlx->c2->r = mlx->c2->r + (mlx->width * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
+		cmin->r = cmin->r - (mlx->width * mlx->quantum - (cmax->r - cmin->r)) / 2.0;
+		cmax->r = cmax->r + (mlx->width * mlx->quantum - (cmax->r - cmin->r)) / 2.0;
 	}
 	else
 	{
-		mlx->c1->i = mlx->c1->i - (mlx->height * mlx->quantum - (mlx->c2->i - mlx->c1->i)) / 2.0;
-		mlx->c2->i = mlx->c2->i + (mlx->height * mlx->quantum - (mlx->c2->i - mlx->c1->i)) / 2.0;
-
-		//mlx->c1->i = mlx->c1->i + ((mlx->c2->i - mlx->c1->i) - (mlx->height * mlx->quantum)) / 2.0;
-	//	mlx->c2->i = mlx->c2->i - ((mlx->c2->i - mlx->c1->i) - (mlx->height * mlx->quantum)) / 2.0;
+		cmin->i = cmin->i - (mlx->height * mlx->quantum - (cmax->i - cmin->i)) / 2.0;
+		cmax->i = cmax->i + (mlx->height * mlx->quantum - (cmax->i - cmin->i)) / 2.0;
 	}
 }
 
@@ -61,14 +62,16 @@ void		mandelbrot_image(t_mlx *mlx)
 	int			y;
 	t_complex	c;
 
-	c.i = mlx->c1->i;
+	c.i = mlx->mandelbrot->cmin->i;
+	mlx->image = &(mlx->mandelbrot->image);
 	y = 0;
 //	printf("c = c1 = %f %f, c2 = %f %f quantum = %lf\n",mlx->c1->r, mlx->c1->i,
 //				   mlx->c2->r, mlx->c2->i, mlx->quantum);
+	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->mandelbrot->cmax->r, mlx->mandelbrot->cmax->i);
 	while (y < mlx->height)
 	{
 		x = 0;
-		c.r = mlx->c1->r;
+		c.r = mlx->mandelbrot->cmin->r;
 		while (x < mlx->width)
 		{
 			fill_pixel(mlx, x, y, is_limited(&c, mlx->iteration, mlx->order_color));
@@ -78,6 +81,6 @@ void		mandelbrot_image(t_mlx *mlx)
 		c.i += mlx->quantum;
 		y++;
 	}
-//	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->c2->r, mlx->c2->i);
+	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->mandelbrot->cmax->r, mlx->mandelbrot->cmax->i);
 	affiche(mlx);
 }

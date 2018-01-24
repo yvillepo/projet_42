@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 03:56:49 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 10:53:47 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/24 05:16:45 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ unsigned int		color1(double percent)
 	{
 		color.rgb[ROUGE] = 0xFF;
 		percent = percent - 0.33333;
-		2f (percent < 0.33333)
+		if (percent < 0.33333)
 			color.rgb[VERT] = (unsigned char)(percent * 3 * 0xFF);
 		else
 		{

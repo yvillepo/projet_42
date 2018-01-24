@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 00:38:11 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/16 04:33:49 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/24 06:21:39 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void			fill_pixel(t_mlx *mlx, int x1,
 	y = y1;
 	if (x >= mlx->width || y >= mlx->height || x <= 0 || y <= 0)
 		return ;
-	mlx->image.im[x + y * mlx->width] = color;
+	mlx->image->im[x + y * mlx->width] = color;
 }
 
 void			affiche(t_mlx *mlx)
 {
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image.pim, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->pim, 0, 0);
 }

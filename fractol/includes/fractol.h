@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/19 11:15:24 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/24 08:47:27 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define VERT 1
 # define BLEU 0
 # define MAX_ITERATION 50
-# define PI 3.1415926535897932384
+# define TRANSLATION 0.20 
 
 typedef union		u_color
 {
@@ -46,8 +46,8 @@ typedef union		u_color
 
 typedef struct		s_point
 {
-	double				x;
-	double				y;
+	double			x;
+	double			y;
 }					t_point;
 
 typedef struct		s_image
@@ -56,6 +56,21 @@ typedef struct		s_image
 	unsigned int	*im;
 }					t_image;
 
+typedef struct		s_mandelbrot
+{
+	t_complex		*cmin;
+	t_complex		*cmax;
+	t_image			image;
+}					t_mandelbrot;
+
+typedef struct		s_julia
+{
+	t_complex		*zmin;
+	t_complex		*zmax;
+	t_complex		*c;
+	t_image			image;
+}					t_julia;
+
 typedef struct		s_mlx
 {
 	int				width;
@@ -63,11 +78,12 @@ typedef struct		s_mlx
 	int				iteration;
 	void			*mlx;
 	void			*win;
-	t_complex		*c1;
-	t_complex		*c2;
+	t_mandelbrot	*mandelbrot;
+	t_julia			*julia;
 	double			quantum;
 	int				order_color[3];
-	t_image			image;
+	int				fractale;
+	t_image			*image;
 }					t_mlx;
 
 unsigned int		*new_image(t_mlx *mlx, void **image);
@@ -89,5 +105,7 @@ unsigned int		color1(double percent);
 void				translation(t_mlx *mlx, int key, double translation);
 void				change_color(int tab[3]);
 unsigned int		color2(double percent, int ordre_color[3]);
+int					input_julia(int x, int y, t_mlx *mlx);
+void				julia_image(t_mlx *mlx);
 
 #endif
