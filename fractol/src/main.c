@@ -23,10 +23,9 @@ int		main(int ac, char **av)
 	mlx->c2 = new_complex(0.80, 1.4);
 	centre(mlx);
 	mandelbrot_image(mlx);
-//	mandelbrot_image1(mlx, mlx->c1, mlx->c2);
-//	mlx_hook(mlx->win, 6, 1L < 6, input_julia, mlx);
+	//mlx_hook(mlx->win, 6, 1L < 6, input_julia, mlx);
 	mlx_key_hook(mlx->win, key_hook, mlx);
 	mlx_mouse_hook(mlx->win, mouse_hook, mlx);
-	mlx_loop(mlx);
+	mlx_loop(mlx->mlx);
 	return (0);
 }

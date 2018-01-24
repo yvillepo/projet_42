@@ -31,7 +31,11 @@
 # define T_W 13
 # define T_S 1
 # define T_D 2
-# define ITERATION_MAX 50
+# define SPACE 49 
+# define ROUGE 2
+# define VERT 1
+# define BLEU 0
+# define MAX_ITERATION 50
 # define PI 3.1415926535897932384
 
 typedef union		u_color
@@ -54,14 +58,15 @@ typedef struct		s_image
 
 typedef struct		s_mlx
 {
+	int				width;
+	int				height;
+	int				iteration;
 	void			*mlx;
 	void			*win;
-//	int				width;
-//	int				height;
-//	int				iteration;
 	t_complex		*c1;
 	t_complex		*c2;
 	double			quantum;
+	int				order_color[3];
 	t_image			image;
 }					t_mlx;
 
@@ -82,5 +87,7 @@ void				mlx_free(t_mlx **m);
 unsigned int					color(float percent);
 unsigned int		color1(double percent);
 void				translation(t_mlx *mlx, int key, double translation);
+void				change_color(int tab[3]);
+unsigned int		color2(double percent, int ordre_color[3]);
 
 #endif

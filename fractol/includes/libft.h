@@ -118,5 +118,6 @@ t_complex			add_complex(t_complex *z1, t_complex *z2);
 t_complex			mult_complex(t_complex *z1, t_complex *z2);
 t_complex			*new_complex(double r, double i);
 double				mod2(t_complex *z1);
+void				ft_swap(int *x1, int *x2);
 
 #endif

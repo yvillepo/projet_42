@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 
-int			is_limited(t_complex *c, int iteration_max)
+int			is_limited(t_complex *c, int iteration_max, int order_color[3])
 {
 	int			i;
 	t_complex	z;
@@ -30,7 +30,7 @@ int			is_limited(t_complex *c, int iteration_max)
 		z.i = 2 * z.r * z.i+ c->i;
 		z.r = tmp_z_r;
 		if (z.r * z.r + z.i * z.i > 4)
-			return (color1(/*1.0 - */(double)i / (iteration_max)));
+			return (color2(1 - (double)i / (iteration_max), order_color));
 	}
 	return (0);
 }
@@ -38,17 +38,20 @@ int			is_limited(t_complex *c, int iteration_max)
 void		centre(t_mlx *mlx)
 {
 
-	mlx->quantum = ft_min_double((mlx->c2->r - mlx->c1->r) / MAX_WIDTH,
-			(mlx->c2->i - mlx->c1->i) / MAX_HEIGHT);
-	if ((mlx->c2->r - mlx->c1->r) / MAX_WIDTH < (mlx->c2->i - mlx->c1->i) / MAX_HEIGHT)
+	mlx->quantum = ft_min_double((mlx->c2->r - mlx->c1->r) / mlx->width,
+			(mlx->c2->i - mlx->c1->i) / mlx->height);
+	if ((mlx->c2->r - mlx->c1->r) / mlx->width < (mlx->c2->i - mlx->c1->i) / mlx->height)
 	{
-		mlx->c1->r = mlx->c1->r - (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
-		mlx->c2->r = mlx->c2->r + (MAX_WIDTH * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
+		mlx->c1->r = mlx->c1->r - (mlx->width * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
+		mlx->c2->r = mlx->c2->r + (mlx->width * mlx->quantum - (mlx->c2->r - mlx->c1->r)) / 2.0;
 	}
 	else
 	{
-		mlx->c1->i = mlx->c1->i + ((mlx->c2->i - mlx->c1->i) - (MAX_HEIGHT * mlx->quantum)) / 2.0;
-		mlx->c2->i = mlx->c2->i - ((mlx->c2->i - mlx->c1->i) - (MAX_HEIGHT * mlx->quantum)) / 2.0;
+		mlx->c1->i = mlx->c1->i - (mlx->height * mlx->quantum - (mlx->c2->i - mlx->c1->i)) / 2.0;
+		mlx->c2->i = mlx->c2->i + (mlx->height * mlx->quantum - (mlx->c2->i - mlx->c1->i)) / 2.0;
+
+		//mlx->c1->i = mlx->c1->i + ((mlx->c2->i - mlx->c1->i) - (mlx->height * mlx->quantum)) / 2.0;
+	//	mlx->c2->i = mlx->c2->i - ((mlx->c2->i - mlx->c1->i) - (mlx->height * mlx->quantum)) / 2.0;
 	}
 }
 
@@ -60,21 +63,21 @@ void		mandelbrot_image(t_mlx *mlx)
 
 	c.i = mlx->c1->i;
 	y = 0;
-	printf("c = c1 = %f %f, c2 = %f %f quantum = %lf\n",mlx->c1->r, mlx->c1->i,
-				   mlx->c2->r, mlx->c2->i, mlx->quantum);
-	while (y < MAX_HEIGHT)
+//	printf("c = c1 = %f %f, c2 = %f %f quantum = %lf\n",mlx->c1->r, mlx->c1->i,
+//				   mlx->c2->r, mlx->c2->i, mlx->quantum);
+	while (y < mlx->height)
 	{
 		x = 0;
 		c.r = mlx->c1->r;
-		while (x < MAX_WIDTH)
+		while (x < mlx->width)
 		{
-			fill_pixel(mlx, x, y, is_limited(&c, ITERATION_MAX));
+			fill_pixel(mlx, x, y, is_limited(&c, mlx->iteration, mlx->order_color));
 			c.r += mlx->quantum;
 			x++;
 		}
 		c.i += mlx->quantum;
 		y++;
 	}
-	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->c2->r, mlx->c2->i);
+//	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->c2->r, mlx->c2->i);
 	affiche(mlx);
 }

@@ -44,13 +44,13 @@ void		julia_image(t_mlx *mlx)
 
 	z.i = mlx->c1->i;
 	y = 0;
-	while (y < MAX_HEIGHT)
+	while (y < mlx->height)
 	{
 		x = 0;
 		z.r = mlx->c1->r;
-		while (x < MAX_WIDTH)
+		while (x < mlx->width)
 		{
-			fill_pixel(mlx, x, y, is_limited(c, mlx->c3, ITERATION_MAX));
+			fill_pixel(mlx, x, y, is_limited(c, mlx->c3, mlx->iteration));
 			z.r += mlx->quantum;
 			x++;
 		}

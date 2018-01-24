@@ -18,13 +18,18 @@ int		key_hook(int keycode, void *p)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx*)(p);
-		printf ("c1 = %f\n",mlx->c1->r);
+	printf ("khrey = %d\n",keycode);
 	if (keycode >= LEFT || keycode <= UP)
 		translation(mlx, keycode, 0.10);
 	if (keycode == ECHAP)
 	{
 		mlx_free(&mlx);
 		exit(0);
+	}
+	if (keycode == SPACE)
+	{
+		change_color(mlx->order_color);
+		mandelbrot_image(mlx);
 	}
 	return (0);
 }
@@ -38,7 +43,7 @@ int		mouse_hook(int button, int x, int y, void *param)
 	p = new_point(x, y);
 	printf ("%d buttom \n", button);
 	if (button == 5 || button == 1)
-		zoom(mlx, 200, p); 
+		zoom(mlx, 150, p); 
 	if (button == 4 || button == 2)
 		zoom(mlx, 50, p);
 	return (0);
