@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 03:38:27 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/25 05:07:26 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@
 # define T_W 13
 # define T_S 1
 # define T_D 2
+# define T_R 15
 # define SPACE 49 
+# define ENTER 36
 # define ROUGE 2
 # define VERT 1
 # define BLEU 0
@@ -39,7 +41,7 @@
 # define JULIA 1
 # define MAX_ITERATION 50
 # define TRANSLATION 0.20 
-# define PERCENT_ZOOM 130
+# define PERCENT_ZOOM 150
 
 typedef union		u_color
 {
@@ -74,6 +76,7 @@ typedef struct		s_julia
 	t_complex		*c;
 	double			quantum;
 	t_image			image;
+	int				mode_zoom;
 }					t_julia;
 
 typedef struct		s_mlx
@@ -114,5 +117,7 @@ void				julia_image(t_mlx *mlx);
 void				affiche_fractal(t_mlx *mlx);
 t_complex			*cmin_fractole(t_mlx *mlx);
 t_complex			*cmax_fractole(t_mlx *mlx);
+void				switch_mode(t_julia *julia);
+void				reset_fractole(t_mlx *mlx);
 
 #endif

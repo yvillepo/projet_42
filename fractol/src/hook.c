@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 20:59:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 03:41:10 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/25 05:07:38 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int		key_hook(int keycode, void *p)
 		change_color(mlx->order_color);
 		affiche_fractal(mlx);
 	}
+	if (keycode == ENTER && mlx->fractale == JULIA)
+		switch_mode(mlx->julia);
+	if (keycode == T_R)
+		reset_fractole(mlx);
 	return (0);
 }
 

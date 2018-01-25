@@ -6,27 +6,29 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 10:10:43 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 02:07:24 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/25 04:49:01 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fractol.h"
 
-static int			is_limited(t_complex *z0, t_complex *c, int iteration_max)
+static int			is_limited(t_complex *z0, t_complex *c, int iteration_max, int order_color[3])
 {
 	int			i;
 	t_complex	z;
+	double		tmp;
 
 	i = 0;
 	z.r = z0->r;
 	z.i = z0->i;
 	while(i++ < iteration_max)
 	{
+		tmp = z.r;
 		z.r = z.r * z.r - z.i * z.i + c->r;
-		z.i = 2 * (z.r * z.i) + c->i;
+		z.i = 2 * (tmp * z.i) + c->i;
 		if (z.r * z.r + z.i * z.i > 4)
-			return (color1(1.0 - (double)i / (iteration_max)));
+			return (color2(1.0 - (double)i / (iteration_max), order_color));
 	}
 	return (0);
 }
@@ -40,29 +42,37 @@ void		julia_image(t_mlx *mlx)
 	z.i = mlx->julia->zmin->i;
 	y = 0;
 	mlx->image = &(mlx->julia->image);
-	printf ("zmin : %f %f zmax : %f %f c : %f %f quantum : %f\n",mlx->julia->zmin->r , mlx->julia->zmin->i, 
-			mlx->julia->zmax->r, mlx->julia->zmax->i, mlx->julia->c->r , mlx->julia->c->i, mlx->julia->quantum);
 	while (y < mlx->height)
 	{
 		x = 0;
 		z.r = mlx->julia->zmin->r;
 		while (x < mlx->width)
 		{
-			fill_pixel(mlx, x, y, is_limited(&z, mlx->julia->c, mlx->iteration));
+			fill_pixel(mlx, x, y, is_limited(&z, mlx->julia->c, mlx->iteration, mlx->order_color));
 			z.r += mlx->julia->quantum;
 			x++;
 		}
 		z.i += mlx->julia->quantum;
 		y++;
 	}
-	printf("z = %f %f= zmax = %f %f\n",z.r, z.i, mlx->julia->zmax->r, mlx->julia->zmax->i);
+	//printf("z = %f %f= zmax = %f %f\n",z.r, z.i, mlx->julia->zmax->r, mlx->julia->zmax->i);
 	affiche(mlx);
+}
+
+void		switch_mode(t_julia *julia)
+{
+	if (julia->mode_zoom)
+		julia->mode_zoom = 0;
+	else
+		julia->mode_zoom = 1;
 }
 
 int			input_julia(int x, int y, t_mlx *mlx)
 {
-	mlx->julia->c->r = (double)x * 2;
-	mlx->julia->c->i = (double)y * 2 - 800;
+	if (mlx->julia->mode_zoom)
+		return (0);
+	mlx->julia->c->i = ((double)x / mlx->height) * 2 - 1;
+	mlx->julia->c->r = ((double)y / mlx->width) * 2 - 1;
 	julia_image(mlx);
 	return (0);
 }

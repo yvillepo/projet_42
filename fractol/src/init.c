@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:42:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 03:41:33 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/25 05:05:51 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,59 @@ static void		init_order_color(int order_color[3])
 	order_color[2] = 0;
 }
 
-static	void	read_fractol(t_mlx *mlx, int ac, char **av)
+void			init_julia(t_mlx *mlx)
 {
-	if (ft_strcmp(av[1], "mandelbrot") == 0)
-	{
-		mlx->mandelbrot = ft_malloc(sizeof(*(mlx->mandelbrot)));
+	mlx->julia->zmin = new_complex(-2, -2);
+	mlx->julia->zmax = new_complex(2, 2);
+	mlx->julia->c = new_complex(0, 0);
+	mlx->julia->image.im = new_image(mlx, &(mlx->julia->image.pim));
+	mlx->fractale = JULIA;
+	mlx->julia->mode_zoom = 0;
+	init_quantum(mlx);
+	julia_image(mlx);
+}
+
+void			open_julia(t_mlx *mlx)
+{
+		mlx->julia = ft_malloc(sizeof(*(mlx->julia)));
+		init_julia(mlx);
+		mlx_hook(mlx->win, 6, 1L < 6, input_julia, mlx);
+}
+
+void			init_mandelbrot(t_mlx *mlx)
+{
 		mlx->mandelbrot->cmin = new_complex(-2.05, -1.4);
 		mlx->mandelbrot->cmax = new_complex(0.80, 1.4);
 		mlx->mandelbrot->image.im = new_image(mlx, &(mlx->mandelbrot->image.pim));
 		mlx->fractale = MANDELBROT;
 		init_quantum(mlx);
 		mandelbrot_image(mlx);
+}
+
+void			open_mandelbrot(t_mlx * mlx)
+{
+		mlx->mandelbrot = ft_malloc(sizeof(*(mlx->mandelbrot)));
+		init_mandelbrot(mlx);
+}
+
+void			reset_fractole(t_mlx *mlx)
+{
+	if (mlx->fractale == MANDELBROT)
+		init_mandelbrot(mlx);
+	if (mlx->fractale == JULIA)
+		init_julia(mlx);
+}
+
+static	void	read_fractol(t_mlx *mlx, int ac, char **av)
+{
+	if (ft_strcmp(av[1], "mandelbrot") == 0)
+	{
+		open_mandelbrot(mlx);
 	}
 	else if (ft_strcmp(av[1], "julia") == 0)
 	{
 		mlx->julia = ft_malloc(sizeof(*(mlx->julia)));
-		mlx->julia->zmin = new_complex(-2, -2);
-		mlx->julia->zmax = new_complex(2, 2);
-		mlx->julia->c = new_complex(0, 0);
-		mlx->julia->image.im = new_image(mlx, &(mlx->julia->image.pim));
-		mlx->fractale = JULIA;
-		init_quantum(mlx);
-		julia_image(mlx);
+		init_julia(mlx);
 		mlx_hook(mlx->win, 6, 1L < 6, input_julia, mlx);
 	}
 	else
