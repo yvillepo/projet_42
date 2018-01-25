@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/24 09:03:37 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/25 03:41:02 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,6 @@ static int			is_limited(t_complex *c, int iteration_max, int order_color[3])
 	return (0);
 }
 
-void		centre(t_mlx *mlx)
-{
-	t_complex 	*cmin;
-	t_complex	*cmax;
-
-	cmin = mlx->mandelbrot->cmin;
-	cmax = mlx->mandelbrot->cmax;
-	mlx->quantum = ft_min_double((cmax->r - cmin->r) / mlx->width,
-			(cmax->i - cmin->i) / mlx->height);
-	if ((cmax->r - cmin->r) / mlx->width < (cmax->i - cmin->i) / mlx->height)
-	{
-		cmin->r = cmin->r - (mlx->width * mlx->quantum - (cmax->r - cmin->r)) / 2.0;
-		cmax->r = cmax->r + (mlx->width * mlx->quantum - (cmax->r - cmin->r)) / 2.0;
-	}
-	else
-	{
-		cmin->i = cmin->i - (mlx->height * mlx->quantum - (cmax->i - cmin->i)) / 2.0;
-		cmax->i = cmax->i + (mlx->height * mlx->quantum - (cmax->i - cmin->i)) / 2.0;
-	}
-}
 
 void		mandelbrot_image(t_mlx *mlx)
 {
@@ -65,9 +45,7 @@ void		mandelbrot_image(t_mlx *mlx)
 	c.i = mlx->mandelbrot->cmin->i;
 	mlx->image = &(mlx->mandelbrot->image);
 	y = 0;
-//	printf("c = c1 = %f %f, c2 = %f %f quantum = %lf\n",mlx->c1->r, mlx->c1->i,
-//				   mlx->c2->r, mlx->c2->i, mlx->quantum);
-	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->mandelbrot->cmax->r, mlx->mandelbrot->cmax->i);
+//	printf("c1 = %f %f= c2 = %f %f\n quantum = %f\n", mlx->mandelbrot->cmin->r,mlx->mandelbrot->cmin->i, mlx->mandelbrot->cmax->r, mlx->mandelbrot->cmax->i, mlx->mandelbrot->quantum);
 	while (y < mlx->height)
 	{
 		x = 0;
@@ -75,12 +53,12 @@ void		mandelbrot_image(t_mlx *mlx)
 		while (x < mlx->width)
 		{
 			fill_pixel(mlx, x, y, is_limited(&c, mlx->iteration, mlx->order_color));
-			c.r += mlx->quantum;
+			c.r += mlx->mandelbrot->quantum;
 			x++;
 		}
-		c.i += mlx->quantum;
+		c.i += mlx->mandelbrot->quantum;
 		y++;
 	}
-	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->mandelbrot->cmax->r, mlx->mandelbrot->cmax->i);
+//	printf("c = %f %f= c2 = %f %f\n",c.r, c.i, mlx->mandelbrot->cmax->r, mlx->mandelbrot->cmax->i);
 	affiche(mlx);
 }

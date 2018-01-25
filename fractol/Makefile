@@ -6,7 +6,7 @@
 #    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2018/01/24 08:46:45 by yvillepo         ###   ########.fr        #
+#    Updated: 2018/01/25 01:02:38 by yvillepo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC = main.c \
 	  util.c \
 	  color.c \
 	  translation.c \
-	  julia.c
+	  julia.c \
+	  centre.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

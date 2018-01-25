@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 05:02:10 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/24 09:02:30 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/25 03:40:13 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		translation_base(t_complex *cmin, t_complex *cmax, int key, double transla
 	}
 }
 
-void		translation(t_mlx *mlx, int key, double translation)
+void		translation_fractale(t_mlx *mlx, int key, double translation)
 {
 	if (mlx->fractale == 0)
 	{
