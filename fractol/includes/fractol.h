@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:44:27 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 10:57:31 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define T_R 15
 # define T_N 45
 # define T_X 7
-# define SPACE 49 
+# define SPACE 49
 # define ENTER 36
 # define ROUGE 2
 # define VERT 1
@@ -41,7 +41,7 @@
 # define JULIA 1
 # define BURNING 2
 # define MAX_ITERATION 50
-# define TRANSLATION 0.20 
+# define TRANSLATION 0.20
 # define PERCENT_ZOOM 150
 # define DEFAULT_HEIGHT 800
 
@@ -97,22 +97,23 @@ typedef struct		s_mlx
 }					t_mlx;
 
 unsigned int		*new_image(t_mlx *mlx, void **image);
-void				fill_pixel(t_mlx *mlx, int x, int y,
-		unsigned int color);
+void				fill_pixel(t_mlx *mlx, int x, int y, unsigned int color);
 t_mlx				*init(int ac, char **av);
 void				affiche(t_mlx *mlx);
 void				mandelbrot_image(t_mlx *mlx);
 void				init_quantum(t_mlx *mlx);
 int					key_hook(int keycode, void *p);
-void				zoom_fractale(t_mlx *mlx, t_point *zoom_point, int sens_zoom);
+void				zoom_fractale(t_mlx *mlx,
+		t_point *zoom_point, int sens_zoom);
 t_point				*new_point(int x, int y);
 int					mouse_hook(int button, int x, int y, void *param);
 void				affiche_mlx(t_mlx *mlx);
-void				mandelbrot_image1(t_mlx *mlx,t_complex *c1,t_complex *c2);
+void				mandelbrot_image1(t_mlx *mlx, t_complex *c1, t_complex *c2);
 void				mlx_free(t_mlx **m);
-unsigned int					color(float percent);
+unsigned int		color(float percent);
 unsigned int		color1(double percent);
-void				translation_fractale(t_mlx *mlx, int key, double translation);
+void				translation_fractale(t_mlx *mlx,
+		int key, double translation);
 void				change_color(int tab[3]);
 unsigned int		color2(double percent, int ordre_color[3]);
 int					input_julia(int x, int y, t_mlx *mlx);
@@ -131,6 +132,6 @@ void				open_next_fractol(t_mlx *mlx);
 void				affiche_iteration_max(t_mlx *mlx);
 void				burning_ship_image(t_mlx *mlx);
 void				init_burning_ship(t_mlx *mlx);
-void				open_burning_ship(t_mlx * mlx);
+void				open_burning_ship(t_mlx *mlx);
 
 #endif
