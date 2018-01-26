@@ -61,10 +61,15 @@ void			open_next_fractol(t_mlx *mlx)
 
 void			affiche_iteration_max(t_mlx *mlx)
 {
-	int		tmp;
+	static int		tmp = 0;
 
+	if (mlx->iteration == 500)
+	{
+		mlx->iteration = tmp;
+		affiche_fractal(mlx);
+		return ;
+	}
 	tmp = mlx->iteration;
 	mlx->iteration = 500;
 	affiche_fractal(mlx);
-	mlx->iteration = tmp;
 }
