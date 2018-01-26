@@ -6,11 +6,10 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 00:38:11 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 07:33:15 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 10:13:39 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fractol.h"
 
 unsigned int	*new_image(t_mlx *mlx, void **image)
@@ -48,5 +47,5 @@ void			affiche_fractal(t_mlx *mlx)
 	if (mlx->fractale == JULIA)
 		julia_image(mlx);
 	if (mlx->fractale == BURNING)
-	   burning_ship_image(mlx);	
+		burning_ship_image(mlx);
 }

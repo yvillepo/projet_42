@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burning_ship.c                                     :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 07:12:30 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:13:46 by yvillepo         ###   ########.fr       */
+/*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
+/*   Updated: 2018/01/26 10:14:40 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int		is_limited(t_complex *c, int iteration_max, int order_color[3])
 	z.i = 0;
 	while (i++ < iteration_max)
 	{
-		tmp_z_r = ft_abs_double(z.r * z.r - z.i * z.i + c->r);
-		z.i = ft_abs_double(2 * z.r * z.i + c->i);
+		tmp_z_r = z.r * z.r - z.i * z.i + c->r;
+		z.i = 2 * z.r * z.i + c->i;
 		z.r = tmp_z_r;
 		if (z.r * z.r + z.i * z.i > 4)
 			return (color2(1 - (double)i / (iteration_max), order_color));
@@ -32,27 +32,27 @@ static int		is_limited(t_complex *c, int iteration_max, int order_color[3])
 	return (0);
 }
 
-void			burning_ship_image(t_mlx *mlx)
+void			mandelbrot_image(t_mlx *mlx)
 {
 	int			x;
 	int			y;
 	t_complex	c;
 
-	c.i = mlx->burning->cmin->i;
-	mlx->image = &(mlx->burning->image);
+	c.i = mlx->mandelbrot->cmin->i;
+	mlx->image = &(mlx->mandelbrot->image);
 	y = 0;
 	while (y < mlx->height)
 	{
 		x = 0;
-		c.r = mlx->burning->cmin->r;
+		c.r = mlx->mandelbrot->cmin->r;
 		while (x < mlx->width)
 		{
-			fill_pixel(mlx, x, y,
-					is_limited(&c, mlx->iteration, mlx->order_color));
-			c.r += mlx->burning->quantum;
+			fill_pixel(mlx, x, y, is_limited(&c, mlx->iteration,
+						mlx->order_color));
+			c.r += mlx->mandelbrot->quantum;
 			x++;
 		}
-		c.i += mlx->burning->quantum;
+		c.i += mlx->mandelbrot->quantum;
 		y++;
 	}
 	affiche(mlx);

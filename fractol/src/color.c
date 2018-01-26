@@ -6,12 +6,11 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 03:56:49 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 05:35:29 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 10:14:01 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 
 unsigned char		degrade(double percent, int croissant)
 {

@@ -6,13 +6,14 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 05:02:10 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 03:40:13 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 09:35:44 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		translation_base(t_complex *cmin, t_complex *cmax, int key, double translation)
+void		translation_base(t_complex *cmin, t_complex *cmax,
+		int key, double translation)
 {
 	if (key == LEFT)
 	{
@@ -42,16 +43,22 @@ void		translation_base(t_complex *cmin, t_complex *cmax, int key, double transla
 
 void		translation_fractale(t_mlx *mlx, int key, double translation)
 {
-	if (mlx->fractale == 0)
+	if (mlx->fractale == MANDELBROT)
 	{
 		translation_base(mlx->mandelbrot->cmin, mlx->mandelbrot->cmax,
 				key, translation);
 		mandelbrot_image(mlx);
 	}
-	if (mlx->fractale == 1)
+	if (mlx->fractale == JULIA)
 	{
 		translation_base(mlx->julia->zmin, mlx->julia->zmax,
 				key, translation);
 		julia_image(mlx);
+	}
+	if (mlx->fractale == BURNING)
+	{
+		translation_base(mlx->burning->cmin, mlx->burning->cmax,
+				key, translation);
+		burning_ship_image(mlx);
 	}
 }

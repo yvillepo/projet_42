@@ -6,18 +6,16 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 07:51:03 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 10:44:27 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <stdio.h>
 # include "mlx.h"
-# include <math.h>
 # include "libft.h"
-# include "fenaitre.h"
+# include <math.h>
 # define ECHAP 53
 # define LEFT 123
 # define UP 126
@@ -45,6 +43,7 @@
 # define MAX_ITERATION 50
 # define TRANSLATION 0.20 
 # define PERCENT_ZOOM 150
+# define DEFAULT_HEIGHT 800
 
 typedef union		u_color
 {
@@ -123,7 +122,7 @@ t_complex			*cmin_fractole(t_mlx *mlx);
 t_complex			*cmax_fractole(t_mlx *mlx);
 void				switch_mode(t_julia *julia);
 void				reset_fractole(t_mlx *mlx);
-void				read_fractol(t_mlx *mlx, int ac, char **av);
+void				read_fractol(t_mlx *mlx, char **av);
 void				init_julia(t_mlx *mlx);
 void				init_mandelbrot(t_mlx *mlx);
 void				open_julia(t_mlx *mlx);

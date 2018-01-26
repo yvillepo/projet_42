@@ -6,13 +6,11 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 23:10:32 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 05:41:26 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 10:14:33 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
-#include <stdio.h>
 
 int		main(int ac, char **av)
 {

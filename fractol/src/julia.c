@@ -6,14 +6,14 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 10:10:43 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 06:29:10 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 10:14:27 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fractol.h"
 
-static int			is_limited(t_complex *z0, t_complex *c, int iteration_max, int order_color[3])
+static int		is_limited(t_complex *z0, t_complex *c,
+		int iteration_max, int order_color[3])
 {
 	int			i;
 	t_complex	z;
@@ -22,7 +22,7 @@ static int			is_limited(t_complex *z0, t_complex *c, int iteration_max, int orde
 	i = 0;
 	z.r = z0->r;
 	z.i = z0->i;
-	while(i++ < iteration_max)
+	while (i++ < iteration_max)
 	{
 		tmp = z.r;
 		z.r = z.r * z.r - z.i * z.i + c->r;
@@ -33,7 +33,7 @@ static int			is_limited(t_complex *z0, t_complex *c, int iteration_max, int orde
 	return (0);
 }
 
-void		julia_image(t_mlx *mlx)
+void			julia_image(t_mlx *mlx)
 {
 	int			x;
 	int			y;
@@ -48,7 +48,8 @@ void		julia_image(t_mlx *mlx)
 		z.r = mlx->julia->zmin->r;
 		while (x < mlx->width)
 		{
-			fill_pixel(mlx, x, y, is_limited(&z, mlx->julia->c, mlx->iteration, mlx->order_color));
+			fill_pixel(mlx, x, y, is_limited(&z, mlx->julia->c,
+						mlx->iteration, mlx->order_color));
 			z.r += mlx->julia->quantum;
 			x++;
 		}
@@ -58,7 +59,7 @@ void		julia_image(t_mlx *mlx)
 	affiche(mlx);
 }
 
-void		switch_mode(t_julia *julia)
+void			switch_mode(t_julia *julia)
 {
 	if (julia->mode_zoom)
 		julia->mode_zoom = 0;
@@ -66,7 +67,7 @@ void		switch_mode(t_julia *julia)
 		julia->mode_zoom = 1;
 }
 
-int			input_julia(int x, int y, t_mlx *mlx)
+int				input_julia(int x, int y, t_mlx *mlx)
 {
 	if (mlx->julia->mode_zoom || mlx->fractale != JULIA)
 		return (0);
