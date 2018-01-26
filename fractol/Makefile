@@ -61,7 +61,7 @@ obj:
 	mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+	$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) $(MLX_INC) -o $@ -c $<
 
 $(FT_LIB):
 	@make -C $(FT)
