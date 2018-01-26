@@ -24,7 +24,7 @@ SRC = main.c \
 	  color.c \
 	  translation.c \
 	  julia.c \
-	  centre.c \
+	  init_quantum.c \
 	  init_julia.c \
 	  init_mandelbrot.c \
 	  fractol.c \
