@@ -52,7 +52,7 @@ t_mlx			*init(int ac, char **av)
 	t_mlx	*m;
 
 	if (ac < 2 || (ft_strcmp(av[1], "mandelbrot") &&
-		ft_strcmp(av[1], "mandelbrot") && ft_strcmp(av[1], "mandelbrot")))
+		ft_strcmp(av[1], "julia") && ft_strcmp(av[1], "burning")))
 	{
 		ft_putendl("USAGE : /fractol \"mandelbrot\", \"julia\", \"burning\"\
 [ [ ITERATION MAX ] [ TAILLE FENAITRE ] ]");
