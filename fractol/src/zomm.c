@@ -6,12 +6,11 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 20:39:42 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 03:36:19 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 05:36:02 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
 
 static void		zoom(double *quantum, t_complex *cmin, t_complex *cmax, t_point *zoom_point)
 {

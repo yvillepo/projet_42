@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 05:07:26 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 07:51:03 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define T_S 1
 # define T_D 2
 # define T_R 15
+# define T_N 45
+# define T_X 7
 # define SPACE 49 
 # define ENTER 36
 # define ROUGE 2
@@ -39,6 +41,7 @@
 # define BLEU 0
 # define MANDELBROT 0
 # define JULIA 1
+# define BURNING 2
 # define MAX_ITERATION 50
 # define TRANSLATION 0.20 
 # define PERCENT_ZOOM 150
@@ -88,6 +91,7 @@ typedef struct		s_mlx
 	void			*win;
 	t_mandelbrot	*mandelbrot;
 	t_julia			*julia;
+	t_mandelbrot	*burning;
 	int				order_color[3];
 	int				fractale;
 	t_image			*image;
@@ -119,5 +123,15 @@ t_complex			*cmin_fractole(t_mlx *mlx);
 t_complex			*cmax_fractole(t_mlx *mlx);
 void				switch_mode(t_julia *julia);
 void				reset_fractole(t_mlx *mlx);
+void				read_fractol(t_mlx *mlx, int ac, char **av);
+void				init_julia(t_mlx *mlx);
+void				init_mandelbrot(t_mlx *mlx);
+void				open_julia(t_mlx *mlx);
+void				open_mandelbrot(t_mlx *mlx);
+void				open_next_fractol(t_mlx *mlx);
+void				affiche_iteration_max(t_mlx *mlx);
+void				burning_ship_image(t_mlx *mlx);
+void				init_burning_ship(t_mlx *mlx);
+void				open_burning_ship(t_mlx * mlx);
 
 #endif

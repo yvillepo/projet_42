@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 20:59:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 05:07:38 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 06:34:19 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		key_hook(int keycode, void *p)
 	if (keycode == ECHAP)
 	{
 //		mlx_free(&mlx);
+		printf("ca devrai kik\n");
 		exit(0);
 	}
 	if (keycode == SPACE)
@@ -35,6 +36,10 @@ int		key_hook(int keycode, void *p)
 		switch_mode(mlx->julia);
 	if (keycode == T_R)
 		reset_fractole(mlx);
+	if (keycode ==T_N)
+		open_next_fractol(mlx);
+	if (keycode == T_X)
+		affiche_iteration_max(mlx);
 	return (0);
 }
 

@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_burning_ship.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 23:10:32 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 05:41:26 by yvillepo         ###   ########.fr       */
+/*   Created: 2018/01/26 07:28:31 by yvillepo          #+#    #+#             */
+/*   Updated: 2018/01/26 07:53:14 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
-#include <stdio.h>
 
-int		main(int ac, char **av)
+void			init_burning_ship(t_mlx *mlx)
 {
-	t_mlx		*mlx;
-
-	mlx = init(ac, av);
-	mlx_key_hook(mlx->win, key_hook, mlx);
-	mlx_mouse_hook(mlx->win, mouse_hook, mlx);
-	mlx_loop(mlx->mlx);
-	return (0);
+		mlx->burning->cmin = new_complex(-2.50, 1);
+		mlx->burning->cmax = new_complex(-1.75, 1.75);
+		mlx->burning->image.im = new_image(mlx, &(mlx->mandelbrot->image.pim));
+		mlx->fractale = BURNING;
+		init_quantum(mlx);
+		burning_ship_image(mlx);
 }
+
+void			open_burning_ship(t_mlx * mlx)
+{
+		mlx->burning = ft_malloc(sizeof(*(mlx->mandelbrot)));
+		init_mandelbrot(mlx);
+}
+

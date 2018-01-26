@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 10:10:43 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 04:49:01 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 06:29:10 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void		julia_image(t_mlx *mlx)
 		z.i += mlx->julia->quantum;
 		y++;
 	}
-	//printf("z = %f %f= zmax = %f %f\n",z.r, z.i, mlx->julia->zmax->r, mlx->julia->zmax->i);
 	affiche(mlx);
 }
 
@@ -69,7 +68,7 @@ void		switch_mode(t_julia *julia)
 
 int			input_julia(int x, int y, t_mlx *mlx)
 {
-	if (mlx->julia->mode_zoom)
+	if (mlx->julia->mode_zoom || mlx->fractale != JULIA)
 		return (0);
 	mlx->julia->c->i = ((double)x / mlx->height) * 2 - 1;
 	mlx->julia->c->r = ((double)y / mlx->width) * 2 - 1;

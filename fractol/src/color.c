@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 03:56:49 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/24 05:16:45 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 05:35:29 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ unsigned char		degrade(double percent, int croissant)
 void				change_color(int tab[3])
 {
 	static int phase = 0;
-	int i = -1;
 
-	while (i++ < 2)
-		printf ("%d				\n",tab[i]);
 	if (phase)
 		ft_swap(tab + 1, tab + 2);
 	else
@@ -35,9 +32,6 @@ void				change_color(int tab[3])
 		phase = 0;
 	else
 		phase = 1;
-	i = -1;
-	while (i++ < 2)
-		printf ("%d				\n",tab[i]);
 }
 
 unsigned int		color1(double percent)

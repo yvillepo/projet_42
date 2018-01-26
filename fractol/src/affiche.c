@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 00:38:11 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/25 03:18:29 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 07:33:15 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void			affiche_fractal(t_mlx *mlx)
 {
 	if (mlx->fractale == MANDELBROT)
 		mandelbrot_image(mlx);
-	else if (mlx->fractale == JULIA)
+	if (mlx->fractale == JULIA)
 		julia_image(mlx);
+	if (mlx->fractale == BURNING)
+	   burning_ship_image(mlx);	
 }
