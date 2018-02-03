@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:34:31 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 14:40:35 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 18:32:23 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ static void		calcul(t_complex *c, t_complex *z, int puissance)
 	z->i += c->i;
 }
 
-static int		is_limited_2(t_complex *c, int iteration_max, int order_color[3])
+static int		is_limited_2(t_complex *c, int iteration_max,
+		int puissance, int order_color[3])
 {
 	int			i;
 	t_complex	z;
-	double		tmp_z_r;
 
 	i = 0;
 	z.r = 0;
 	z.i = 0;
 	while (i++ < iteration_max)
 	{
-		calcul(c, &z, 3);
+		calcul(c, &z, puissance);
 		if (z.r * z.r + z.i * z.i > 4)
 			return (color2(1 - (double)i / (iteration_max), order_color));
 	}
@@ -67,27 +67,28 @@ static int		is_limited(t_complex *c, int iteration_max, int order_color[3])
 	return (0);
 }
 
-void			mandelbrot_image(t_mlx *mlx)
+void			mandelbrot_image(t_mlx *mlx, int puissance)
 {
 	int			x;
 	int			y;
 	t_complex	c;
 
-	c.i = mlx->mandelbrot->cmin->i;
-	mlx->image = &(mlx->mandelbrot->image);
+	c.i = mlx->mandelbrot[puissance - 2]->cmin->i;
+	mlx->image = &(mlx->mandelbrot[puissance - 2]->image);
+	printf("c1->r %f c2->i %f , quantum %f, puissance %d \n", mlx->mandelbrot[puissance - 2]->cmin->r, mlx->mandelbrot[puissance - 2]->cmax->i, mlx->mandelbrot[puissance - 2]->quantum,puissance);
 	y = 0;
 	while (y < mlx->height)
 	{
 		x = 0;
-		c.r = mlx->mandelbrot->cmin->r;
+		c.r = mlx->mandelbrot[puissance - 2]->cmin->r;
 		while (x < mlx->width)
 		{
 			fill_pixel(mlx, x, y, is_limited_2(&c, mlx->iteration,
-						mlx->order_color));
-			c.r += mlx->mandelbrot->quantum;
+						puissance, mlx->order_color));
+			c.r += mlx->mandelbrot[puissance - 2]->quantum;
 			x++;
 		}
-		c.i += mlx->mandelbrot->quantum;
+		c.i += mlx->mandelbrot[puissance - 2]->quantum;
 		y++;
 	}
 	affiche(mlx);

@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 20:39:42 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:14:53 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 18:47:27 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ static void			zoom_zoom_fractale(t_mlx *mlx, t_point *zoom_point)
 
 	cmin = cmin_fractole(mlx);
 	cmax = cmax_fractole(mlx);
-	if (mlx->fractale == MANDELBROT)
-		zoom(&(mlx->mandelbrot->quantum), cmin, cmax, zoom_point);
+	if (mlx->fractale >= MANDELBROT)
+		zoom(&(mlx->mandelbrot[mlx->fractale - 2]->quantum),
+				mlx->mandelbrot[mlx->fractale - 2]->cmin,
+				mlx->mandelbrot[mlx->fractale - 2]->cmax, zoom_point);
 	else if (mlx->fractale == JULIA)
 		zoom(&(mlx->julia->quantum), cmin, cmax, zoom_point);
 	else if (mlx->fractale == BURNING)
@@ -67,8 +69,9 @@ static void			dezoom_fractale(t_mlx *mlx, t_point *zoom_point)
 
 	cmin = cmin_fractole(mlx);
 	cmax = cmax_fractole(mlx);
-	if (mlx->fractale == MANDELBROT)
-		dezoom(&(mlx->mandelbrot->quantum), cmin, cmax, zoom_point);
+	if (mlx->fractale >= MANDELBROT)
+		dezoom(&(mlx->mandelbrot[mlx->fractale - 2]->quantum),
+				cmin, cmax, zoom_point);
 	else if (mlx->fractale == JULIA)
 		dezoom(&(mlx->julia->quantum), cmin, cmax, zoom_point);
 	else if (mlx->fractale == BURNING)

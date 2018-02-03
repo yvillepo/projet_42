@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 13:41:46 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 19:03:28 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mlx.h"
 # include "libft.h"
+# include <stdio.h>
 # include <math.h>
 # define ECHAP 53
 # define LEFT 123
@@ -37,9 +38,9 @@
 # define ROUGE 2
 # define VERT 1
 # define BLEU 0
-# define MANDELBROT 0
-# define JULIA 1
-# define BURNING 2
+# define MANDELBROT 2
+# define JULIA 0
+# define BURNING 1
 # define MAX_ITERATION 50
 # define TRANSLATION 0.20
 # define PERCENT_ZOOM 150
@@ -90,7 +91,7 @@ typedef struct		s_mlx
 	int				iteration;
 	void			*mlx;
 	void			*win;
-	t_mandelbrot	*mandelbrot;
+	t_mandelbrot	**mandelbrot;
 	t_julia			*julia;
 	t_mandelbrot	*burning;
 	int				order_color[3];
@@ -102,7 +103,7 @@ unsigned int		*new_image(t_mlx *mlx, void **image);
 void				fill_pixel(t_mlx *mlx, int x, int y, unsigned int color);
 t_mlx				*init(int ac, char **av);
 void				affiche(t_mlx *mlx);
-void				mandelbrot_image(t_mlx *mlx);
+void				mandelbrot_image(t_mlx *mlx, int puissance);
 void				init_quantum(t_mlx *mlx);
 int					key_hook(int keycode, void *p);
 void				zoom_fractale(t_mlx *mlx,
@@ -127,10 +128,10 @@ void				switch_mode(t_julia *julia);
 void				reset_fractole(t_mlx *mlx);
 void				read_fractol(t_mlx *mlx, char **av);
 void				init_julia(t_mlx *mlx);
-void				init_mandelbrot(t_mlx *mlx);
+void				init_mandelbrot(t_mlx *mlx, int puissance);
 void				open_julia(t_mlx *mlx);
-void				open_mandelbrot(t_mlx *mlx);
-void				open_next_fractol(t_mlx *mlx);
+void				open_mandelbrot(t_mlx *mlx, int puissance);
+void				open_next_fractol(t_mlx *mlx, int sens);
 void				up_iteration_max(t_mlx *mlx, int up);
 void				burning_ship_image(t_mlx *mlx);
 void				init_burning_ship(t_mlx *mlx);

@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 05:02:10 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 09:35:44 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 18:06:09 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void		translation_base(t_complex *cmin, t_complex *cmax,
 
 void		translation_fractale(t_mlx *mlx, int key, double translation)
 {
-	if (mlx->fractale == MANDELBROT)
+	if (mlx->fractale >= MANDELBROT)
 	{
-		translation_base(mlx->mandelbrot->cmin, mlx->mandelbrot->cmax,
-				key, translation);
-		mandelbrot_image(mlx);
+		translation_base(mlx->mandelbrot[mlx->fractale - 2]->cmin,
+				mlx->mandelbrot[mlx->fractale - 2]->cmax, key, translation);
+		mandelbrot_image(mlx, mlx->fractale);
 	}
 	if (mlx->fractale == JULIA)
 	{

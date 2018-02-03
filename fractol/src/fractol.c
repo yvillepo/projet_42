@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 05:28:18 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 13:39:09 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 19:01:39 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void			reset_fractole(t_mlx *mlx)
 {
-	if (mlx->fractale == MANDELBROT)
-		init_mandelbrot(mlx);
+	if (mlx->fractale >= MANDELBROT)
+		init_mandelbrot(mlx, mlx->fractale - 2);
 	if (mlx->fractale == JULIA)
 		init_julia(mlx);
 	if (mlx->fractale == BURNING)
@@ -25,26 +25,34 @@ void			reset_fractole(t_mlx *mlx)
 void			read_fractol(t_mlx *mlx, char **av)
 {
 	if (ft_strcmp(av[1], "mandelbrot") == 0)
-		open_mandelbrot(mlx);
+		open_mandelbrot(mlx, 2);
+	else if (ft_strcmp(av[1], "mandelbrot3") == 0)
+		open_mandelbrot(mlx, 3);
+	else if (ft_strcmp(av[1], "mandelbrot4") == 0)
+		open_mandelbrot(mlx, 4);
+	else if (ft_strcmp(av[1], "mandelbrot5") == 0)
+		open_mandelbrot(mlx, 5);
+	else if (ft_strcmp(av[1], "mandelbrot6") == 0)
+		open_mandelbrot(mlx, 6);
 	else if (ft_strcmp(av[1], "julia") == 0)
 		open_julia(mlx);
 	else if (ft_strcmp(av[1], "burning") == 0)
 		open_burning_ship(mlx);
 	else
 	{
-		ft_putendl("USAGE : /fractol \"mandelbrot\", \"julia\", \"burning\"\
-[ [ ITERATION MAX ] [ TAILLE FENAITRE ] ]");
+		ft_putendl("USAGE : /fractol \"mandelbrot[3-6]\", \"julia\", \"burning\"\
+[ [ ITERATION MAX ] [ TAILLE FENAITRE ] ]\n");
 		exit(0);
 	}
 }
 
-void			open_next_fractol(t_mlx *mlx)
+void			open_next_fractol(t_mlx *mlx, int sens)
 {
-	mlx->fractale = (mlx->fractale + 1) % 3;
-	if (mlx->fractale == MANDELBROT)
+	mlx->fractale = (mlx->fractale + sens) % 7;
+	if (mlx->fractale >= MANDELBROT)
 	{
-		if (mlx->mandelbrot == NULL)
-			open_mandelbrot(mlx);
+		if (mlx->mandelbrot[mlx->fractale - 2] == NULL)
+			open_mandelbrot(mlx, mlx->fractale);
 	}
 	if (mlx->fractale == JULIA)
 	{
@@ -61,8 +69,8 @@ void			open_next_fractol(t_mlx *mlx)
 
 void			up_iteration_max(t_mlx *mlx, int up)
 {
-	static int		tmp = 0;
-
 	mlx->iteration += up;
+	if (mlx->iteration < 25)
+		mlx->iteration = 25;
 	affiche_fractal(mlx);
 }

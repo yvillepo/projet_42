@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 00:46:03 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:13:53 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 18:41:24 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_complex		*cmin_fractole(t_mlx *mlx)
 {
-	if (mlx->fractale == MANDELBROT)
-		return (mlx->mandelbrot->cmin);
+	if (mlx->fractale >= MANDELBROT)
+		return (mlx->mandelbrot[mlx->fractale - 2]->cmin);
 	else if (mlx->fractale == JULIA)
 		return (mlx->julia->zmin);
 	if (mlx->fractale == BURNING)
@@ -25,8 +25,8 @@ t_complex		*cmin_fractole(t_mlx *mlx)
 
 t_complex		*cmax_fractole(t_mlx *mlx)
 {
-	if (mlx->fractale == MANDELBROT)
-		return (mlx->mandelbrot->cmax);
+	if (mlx->fractale >= MANDELBROT)
+		return (mlx->mandelbrot[mlx->fractale - 2]->cmax);
 	else if (mlx->fractale == JULIA)
 		return (mlx->julia->zmax);
 	if (mlx->fractale == BURNING)
@@ -47,8 +47,8 @@ void			init_quantum(t_mlx *mlx)
 
 	cmin = cmin_fractole(mlx);
 	cmax = cmax_fractole(mlx);
-	if (mlx->fractale == MANDELBROT)
-		mlx->mandelbrot->quantum = calc_quantum(mlx, cmin, cmax);
+	if (mlx->fractale >= MANDELBROT)
+		mlx->mandelbrot[mlx->fractale - 2]->quantum = calc_quantum(mlx, cmin, cmax);
 	if (mlx->fractale == JULIA)
 		mlx->julia->quantum = calc_quantum(mlx, cmin, cmax);
 	if (mlx->fractale == BURNING)
