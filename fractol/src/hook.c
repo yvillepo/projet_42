@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 20:59:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:14:09 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 13:41:15 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int		key_hook(int keycode, void *p)
 	if (keycode == T_N)
 		open_next_fractol(mlx);
 	if (keycode == T_X)
-		affiche_iteration_max(mlx);
+		up_iteration_max(mlx, 50);
+	if (keycode == T_Z)
+		up_iteration_max(mlx, -50);
 	return (0);
 }
 

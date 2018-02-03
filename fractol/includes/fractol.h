@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:57:31 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 13:41:46 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define TRANSLATION 0.20
 # define PERCENT_ZOOM 150
 # define DEFAULT_HEIGHT 800
+
+# define T_Z 0
 
 typedef union		u_color
 {
@@ -129,7 +131,7 @@ void				init_mandelbrot(t_mlx *mlx);
 void				open_julia(t_mlx *mlx);
 void				open_mandelbrot(t_mlx *mlx);
 void				open_next_fractol(t_mlx *mlx);
-void				affiche_iteration_max(t_mlx *mlx);
+void				up_iteration_max(t_mlx *mlx, int up);
 void				burning_ship_image(t_mlx *mlx);
 void				init_burning_ship(t_mlx *mlx);
 void				open_burning_ship(t_mlx *mlx);

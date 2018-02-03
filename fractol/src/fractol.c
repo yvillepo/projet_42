@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 05:28:18 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:33:38 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/03 13:39:09 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,10 @@ void			open_next_fractol(t_mlx *mlx)
 	affiche_fractal(mlx);
 }
 
-void			affiche_iteration_max(t_mlx *mlx)
+void			up_iteration_max(t_mlx *mlx, int up)
 {
 	static int		tmp = 0;
 
-	if (mlx->iteration == 500)
-	{
-		mlx->iteration = tmp;
-		affiche_fractal(mlx);
-		return ;
-	}
-	tmp = mlx->iteration;
-	mlx->iteration = 500;
+	mlx->iteration += up;
 	affiche_fractal(mlx);
 }

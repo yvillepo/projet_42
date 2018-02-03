@@ -6,7 +6,7 @@
 #    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2018/01/26 10:15:48 by yvillepo         ###   ########.fr        #
+#    Updated: 2018/02/03 13:54:30 by yvillepo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra #-Werror 
 
 # mlx library
 FRAMEWORK	=  -framework OpenGL -framework AppKit
