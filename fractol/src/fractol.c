@@ -15,7 +15,7 @@
 void			reset_fractole(t_mlx *mlx)
 {
 	if (mlx->fractale >= MANDELBROT)
-		init_mandelbrot(mlx, mlx->fractale - 2);
+		init_mandelbrot(mlx, mlx->fractale);
 	if (mlx->fractale == JULIA)
 		init_julia(mlx);
 	if (mlx->fractale == BURNING)
@@ -48,7 +48,10 @@ void			read_fractol(t_mlx *mlx, char **av)
 
 void			open_next_fractol(t_mlx *mlx, int sens)
 {
-	mlx->fractale = (mlx->fractale + sens) % 7;
+	if (sens == -1 && mlx->fractale == 0)
+		mlx->fractale = 6;
+	else
+		mlx->fractale = (mlx->fractale + sens) % 7;
 	if (mlx->fractale >= MANDELBROT)
 	{
 		if (mlx->mandelbrot[mlx->fractale - 2] == NULL)
@@ -67,10 +70,11 @@ void			open_next_fractol(t_mlx *mlx, int sens)
 	affiche_fractal(mlx);
 }
 
-void			up_iteration_max(t_mlx *mlx, int up)
+void			up_iteration_max(t_mlx *mlx, double up)
 {
-	mlx->iteration += up;
+	mlx->iteration *= up;
 	if (mlx->iteration < 25)
 		mlx->iteration = 25;
 	affiche_fractal(mlx);
+	mlx_string_put (mlx->mlx, mlx->win, 20, 20, 0xFFFFFF, ft_itoa(mlx->iteration));
 }

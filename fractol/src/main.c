@@ -34,7 +34,8 @@ Fractal:\n\
 	Afficher la fractal precedente                : A\n\
 	Entrer/Quiter mode zoom (julia)               : return\n\
 	Changer les couleurs                          : ESPACE\n\
-	Augmenter/Diminuer precision (iteration max)  : X\n\
+	Augmenter precision (iteration max) 		  : X\n\
+	Diminuer precision (iteration max)			  : W\n\
 	Reset fractal                                 : R\n\
 _______________________________________________________________\n");
 }

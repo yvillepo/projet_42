@@ -29,7 +29,7 @@ static void		calcul(t_complex *c, t_complex *z, int puissance)
 	z->i += c->i;
 }
 
-static int		is_limited_2(t_complex *c, int iteration_max,
+static int		is_limited(t_complex *c, int iteration_max,
 		int puissance, int order_color[3])
 {
 	int			i;
@@ -47,26 +47,6 @@ static int		is_limited_2(t_complex *c, int iteration_max,
 	return (0);
 }
 
-static int		is_limited(t_complex *c, int iteration_max, int order_color[3])
-{
-	int			i;
-	t_complex	z;
-	double		tmp_z_r;
-
-	i = 0;
-	z.r = 0;
-	z.i = 0;
-	while (i++ < iteration_max)
-	{
-		tmp_z_r = z.r * z.r - z.i * z.i + c->r;
-		z.i = 2 * z.r * z.i + c->i;
-		z.r = tmp_z_r;
-		if (z.r * z.r + z.i * z.i > 4)
-			return (color2(1 - (double)i / (iteration_max), order_color));
-	}
-	return (0);
-}
-
 void			mandelbrot_image(t_mlx *mlx, int puissance)
 {
 	int			x;
@@ -74,8 +54,6 @@ void			mandelbrot_image(t_mlx *mlx, int puissance)
 	t_complex	c;
 
 	c.i = mlx->mandelbrot[puissance - 2]->cmin->i;
-	mlx->image = &(mlx->mandelbrot[puissance - 2]->image);
-	printf("c1->r %f c2->i %f , quantum %f, puissance %d \n", mlx->mandelbrot[puissance - 2]->cmin->r, mlx->mandelbrot[puissance - 2]->cmax->i, mlx->mandelbrot[puissance - 2]->quantum,puissance);
 	y = 0;
 	while (y < mlx->height)
 	{
@@ -83,12 +61,12 @@ void			mandelbrot_image(t_mlx *mlx, int puissance)
 		c.r = mlx->mandelbrot[puissance - 2]->cmin->r;
 		while (x < mlx->width)
 		{
-			fill_pixel(mlx, x, y, is_limited_2(&c, mlx->iteration,
+			fill_pixel(mlx, x, y, is_limited(&c, mlx->iteration,
 						puissance, mlx->order_color));
-			c.r += mlx->mandelbrot[puissance - 2]->quantum;
+			c.r += (mlx->mandelbrot)[puissance - 2]->quantum;
 			x++;
 		}
-		c.i += mlx->mandelbrot[puissance - 2]->quantum;
+		c.i += (mlx->mandelbrot)[puissance - 2]->quantum;
 		y++;
 	}
 	affiche(mlx);

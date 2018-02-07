@@ -53,8 +53,7 @@ static void			zoom_zoom_fractale(t_mlx *mlx, t_point *zoom_point)
 	cmax = cmax_fractole(mlx);
 	if (mlx->fractale >= MANDELBROT)
 		zoom(&(mlx->mandelbrot[mlx->fractale - 2]->quantum),
-				mlx->mandelbrot[mlx->fractale - 2]->cmin,
-				mlx->mandelbrot[mlx->fractale - 2]->cmax, zoom_point);
+				cmin, cmax, zoom_point);
 	else if (mlx->fractale == JULIA)
 		zoom(&(mlx->julia->quantum), cmin, cmax, zoom_point);
 	else if (mlx->fractale == BURNING)

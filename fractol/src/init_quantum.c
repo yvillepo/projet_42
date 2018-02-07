@@ -15,7 +15,7 @@
 t_complex		*cmin_fractole(t_mlx *mlx)
 {
 	if (mlx->fractale >= MANDELBROT)
-		return (mlx->mandelbrot[mlx->fractale - 2]->cmin);
+		return ((mlx->mandelbrot[mlx->fractale - 2])->cmin);
 	else if (mlx->fractale == JULIA)
 		return (mlx->julia->zmin);
 	if (mlx->fractale == BURNING)
@@ -26,7 +26,7 @@ t_complex		*cmin_fractole(t_mlx *mlx)
 t_complex		*cmax_fractole(t_mlx *mlx)
 {
 	if (mlx->fractale >= MANDELBROT)
-		return (mlx->mandelbrot[mlx->fractale - 2]->cmax);
+		return ((mlx->mandelbrot[mlx->fractale - 2])->cmax);
 	else if (mlx->fractale == JULIA)
 		return (mlx->julia->zmax);
 	if (mlx->fractale == BURNING)

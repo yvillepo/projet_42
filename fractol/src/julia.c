@@ -41,7 +41,7 @@ void			julia_image(t_mlx *mlx)
 
 	z.i = mlx->julia->zmin->i;
 	y = 0;
-	mlx->image = &(mlx->julia->image);
+//	mlx->image = &(mlx->julia->image);
 	while (y < mlx->height)
 	{
 		x = 0;

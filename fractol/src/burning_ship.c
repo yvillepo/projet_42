@@ -39,7 +39,6 @@ void			burning_ship_image(t_mlx *mlx)
 	t_complex	c;
 
 	c.i = mlx->burning->cmin->i;
-	mlx->image = &(mlx->burning->image);
 	y = 0;
 	while (y < mlx->height)
 	{

@@ -26,7 +26,6 @@ void			init_burning_ship(t_mlx *mlx)
 void			open_burning_ship(t_mlx *mlx)
 {
 	mlx->burning = ft_malloc(sizeof(*(mlx->burning)));
-	mlx->burning->image.im = new_image(mlx, &(mlx->burning->image.pim));
 	mlx->burning->cmin = new_complex(-2.20, -2.25);
 	mlx->burning->cmax = new_complex(1.30, 1.25);
 	init_burning_ship(mlx);

@@ -32,18 +32,18 @@ void			fill_pixel(t_mlx *mlx, int x1,
 	y = y1;
 	if (x >= mlx->width || y >= mlx->height || x <= 0 || y <= 0)
 		return ;
-	mlx->image->im[x + y * mlx->width] = color;
+	mlx->image.im[x + y * mlx->width] = color;
 }
 
 void			affiche(t_mlx *mlx)
 {
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->pim, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image.pim, 0, 0);
 }
 
 void			affiche_fractal(t_mlx *mlx)
 {
 	if (mlx->fractale >= MANDELBROT)
-		mandelbrot_image(mlx, mlx->fractale - 2);
+		mandelbrot_image(mlx, mlx->fractale);
 	if (mlx->fractale == JULIA)
 		julia_image(mlx);
 	if (mlx->fractale == BURNING)

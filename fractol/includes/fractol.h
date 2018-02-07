@@ -15,7 +15,6 @@
 
 # include "mlx.h"
 # include "libft.h"
-# include <stdio.h>
 # include <math.h>
 # define ECHAP 53
 # define LEFT 123
@@ -45,8 +44,7 @@
 # define TRANSLATION 0.20
 # define PERCENT_ZOOM 150
 # define DEFAULT_HEIGHT 800
-
-# define T_Z 0
+# define T_Z 6 
 
 typedef union		u_color
 {
@@ -71,7 +69,6 @@ typedef struct		s_mandelbrot
 	t_complex		*cmin;
 	t_complex		*cmax;
 	double			quantum;
-	t_image			image;
 }					t_mandelbrot;
 
 typedef struct		s_julia
@@ -80,7 +77,6 @@ typedef struct		s_julia
 	t_complex		*zmax;
 	t_complex		*c;
 	double			quantum;
-	t_image			image;
 	int				mode_zoom;
 }					t_julia;
 
@@ -96,7 +92,7 @@ typedef struct		s_mlx
 	t_mandelbrot	*burning;
 	int				order_color[3];
 	int				fractale;
-	t_image			*image;
+	t_image			image;
 }					t_mlx;
 
 unsigned int		*new_image(t_mlx *mlx, void **image);
@@ -132,7 +128,7 @@ void				init_mandelbrot(t_mlx *mlx, int puissance);
 void				open_julia(t_mlx *mlx);
 void				open_mandelbrot(t_mlx *mlx, int puissance);
 void				open_next_fractol(t_mlx *mlx, int sens);
-void				up_iteration_max(t_mlx *mlx, int up);
+void				up_iteration_max(t_mlx *mlx, double up);
 void				burning_ship_image(t_mlx *mlx);
 void				init_burning_ship(t_mlx *mlx);
 void				open_burning_ship(t_mlx *mlx);

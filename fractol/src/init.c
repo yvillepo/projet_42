@@ -65,6 +65,7 @@ t_mlx			*init(int ac, char **av)
 	if (!((m->win = mlx_new_window(m->mlx,
 						m->width, m->height, "mlx 42"))))
 		exit_error("init");
+	m->image.im = new_image(m, &(m->image.pim));
 	read_fractol(m, av);
 	return (m);
 }

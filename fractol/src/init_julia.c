@@ -30,7 +30,6 @@ void			open_julia(t_mlx *mlx)
 {
 	printf("one time\n");
 	mlx->julia = ft_malloc(sizeof(*(mlx->julia)));
-	mlx->julia->image.im = new_image(mlx, &(mlx->julia->image.pim));
 	mlx->julia->zmin = new_complex(-2, -2);
 	mlx->julia->zmax = new_complex(2, 2);
 	mlx->julia->c = new_complex(0, 0);

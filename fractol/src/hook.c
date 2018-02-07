@@ -12,11 +12,28 @@
 
 #include "fractol.h"
 
-int		key_hook(int keycode, void *p)
+static void		hook2(t_mlx *mlx, int keycode)
+{
+	if (keycode == ENTER && mlx->fractale == JULIA)
+		switch_mode(mlx->julia);
+	if (keycode == T_R)
+		reset_fractole(mlx);
+	if (keycode == T_N || keycode == T_D)
+		open_next_fractol(mlx, 1);
+	if (keycode == T_A)
+		open_next_fractol(mlx, -1);
+	if (keycode == T_X)
+		up_iteration_max(mlx, 1.25);
+	if (keycode == T_Z)
+		up_iteration_max(mlx, 0.75);
+}
+
+int				key_hook(int keycode, void *p)
 {
 	t_mlx	*mlx;
 
 	mlx = (t_mlx*)(p);
+	printf ("keycode %d\n",keycode);
 	if (keycode >= LEFT || keycode <= UP)
 		translation_fractale(mlx, keycode, 0.10);
 	if (keycode == ECHAP)
@@ -28,22 +45,11 @@ int		key_hook(int keycode, void *p)
 		change_color(mlx->order_color);
 		affiche_fractal(mlx);
 	}
-	if (keycode == ENTER && mlx->fractale == JULIA)
-		switch_mode(mlx->julia);
-	if (keycode == T_R)
-		reset_fractole(mlx);
-	if (keycode == T_N || keycode == T_D)
-		open_next_fractol(mlx, 1);
-	if (keycode == T_A)
-		open_next_fractol(mlx, -1);
-	if (keycode == T_X)
-		up_iteration_max(mlx, 25);
-	if (keycode == T_Z)
-		up_iteration_max(mlx, -25);
+	hook2(mlx, keycode);
 	return (0);
 }
 
-int		mouse_hook(int button, int x, int y, void *param)
+int					mouse_hook(int button, int x, int y, void *param)
 {
 	t_point		p;
 	t_mlx		*mlx;
