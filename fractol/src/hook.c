@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 20:59:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 19:31:08 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/09 17:03:42 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int				key_hook(int keycode, void *p)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx*)(p);
-	printf ("keycode %d\n",keycode);
 	if (keycode >= LEFT || keycode <= UP)
 		translation_fractale(mlx, keycode, 0.10);
 	if (keycode == ECHAP)
@@ -49,7 +48,7 @@ int				key_hook(int keycode, void *p)
 	return (0);
 }
 
-int					mouse_hook(int button, int x, int y, void *param)
+int				mouse_hook(int button, int x, int y, void *param)
 {
 	t_point		p;
 	t_mlx		*mlx;

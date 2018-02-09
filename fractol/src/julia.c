@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 10:10:43 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/01/26 10:14:27 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/09 17:10:03 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void			julia_image(t_mlx *mlx)
 
 	z.i = mlx->julia->zmin->i;
 	y = 0;
-//	mlx->image = &(mlx->julia->image);
 	while (y < mlx->height)
 	{
 		x = 0;

@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 05:18:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 19:22:50 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/09 17:10:19 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void			init_julia(t_mlx *mlx)
 
 void			open_julia(t_mlx *mlx)
 {
-	printf("one time\n");
 	mlx->julia = ft_malloc(sizeof(*(mlx->julia)));
 	mlx->julia->zmin = new_complex(-2, -2);
 	mlx->julia->zmax = new_complex(2, 2);

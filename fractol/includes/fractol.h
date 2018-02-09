@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 19:03:28 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/09 17:07:46 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TRANSLATION 0.20
 # define PERCENT_ZOOM 150
 # define DEFAULT_HEIGHT 800
-# define T_Z 6 
+# define T_Z 6
 
 typedef union		u_color
 {

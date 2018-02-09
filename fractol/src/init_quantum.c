@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 00:46:03 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 18:41:24 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/09 17:06:30 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void			init_quantum(t_mlx *mlx)
 	cmin = cmin_fractole(mlx);
 	cmax = cmax_fractole(mlx);
 	if (mlx->fractale >= MANDELBROT)
-		mlx->mandelbrot[mlx->fractale - 2]->quantum = calc_quantum(mlx, cmin, cmax);
+		mlx->mandelbrot[mlx->fractale - 2]->quantum =
+			calc_quantum(mlx, cmin, cmax);
 	if (mlx->fractale == JULIA)
 		mlx->julia->quantum = calc_quantum(mlx, cmin, cmax);
 	if (mlx->fractale == BURNING)

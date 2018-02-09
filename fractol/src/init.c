@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:42:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/03 19:37:33 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/09 17:06:06 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void		init_fractol(t_mlx *mlx, int ac, char **av)
 	}
 	mlx->burning = NULL;
 	mlx->julia = NULL;
-	mlx->mandelbrot = ft_memalloc(sizeof (*(mlx->mandelbrot)) * 5);
+	mlx->mandelbrot = ft_memalloc(sizeof(*(mlx->mandelbrot)) * 5);
 }
 
 t_mlx			*init(int ac, char **av)
