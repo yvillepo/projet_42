@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/16 00:42:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/14 01:41:13 by yvillepo         ###   ########.fr       */
+/*   Created: 2017/12/06 20:59:24 by yvillepo          #+#    #+#             */
+/*   Updated: 2018/02/09 17:03:42 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-
-t_mlx			*init(int ac, char **av)
+int				key_hook(int keycode, void *p)
 {
-	t_mlx	*m;
+	t_mlx	*mlx;
 
-	if (ac < 2)
+	mlx = (t_mlx*)(p);
+	if (keycode == ECHAP)
 		exit(0);
-	m = ft_memalloc(sizeof(*m));
-	m->mlx = mlx_init();
-	if (!((m->win = mlx_new_window(m->mlx,
-						m->width, m->height, "mlx 42"))))
-		exit_error("init");
-	m->ecran = new_vect(0, 0, 1);
-	m->camera = new_vect(0, 0, 0);
-	m->pitch = new_point(1, 1);
-	m->width = 800;
-	m->height = 800;
-	m->image.im = new_image(m, &(m->image.pim));
-	return (m);
+	return (0);
+}
+
+int				mouse_hook(int button, int x, int y, void *param)
+{
+	t_point		p;
+	t_mlx		*mlx;
+
+	mlx = (t_mlx*)param;
+	p.x = x;
+	p.y = y;
+	return (0);
 }

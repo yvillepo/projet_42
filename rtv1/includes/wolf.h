@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef WOLF_H
+# define WOLF_H
 
 # include "mlx.h"
 # include "libft.h"
@@ -44,6 +44,7 @@
 # define TRANSLATION 0.20
 # define PERCENT_ZOOM 150
 # define DEFAULT_HEIGHT 800
+# define SPHERE 0
 # define T_Z 6
 
 typedef union		u_color
@@ -51,6 +52,13 @@ typedef union		u_color
 	unsigned char	rgb[4];
 	unsigned int	color;
 }					t_color;
+
+typedef struct		s_vect
+{
+	double			x;
+	double			y;
+	double			z;
+}					t_vect;
 
 typedef struct		s_point
 {
@@ -64,34 +72,30 @@ typedef struct		s_image
 	unsigned int	*im;
 }					t_image;
 
-typedef struct		s_mandelbrot
+typedef struct		s_object
 {
-	t_complex		*cmin;
-	t_complex		*cmax;
-	double			quantum;
-}					t_mandelbrot;
+	int				type;
+	void			*form;
+	t_color			color;
+}					t_object;
 
-typedef struct		s_julia
+typedef	struct		s_sphere
 {
-	t_complex		*zmin;
-	t_complex		*zmax;
-	t_complex		*c;
-	double			quantum;
-	int				mode_zoom;
-}					t_julia;
+	t_vect			*centre;
+	double			rayon;
+}					t_sphere;
 
 typedef struct		s_mlx
 {
 	int				width;
 	int				height;
-	int				iteration;
 	void			*mlx;
 	void			*win;
-	t_mandelbrot	**mandelbrot;
-	t_julia			*julia;
-	t_mandelbrot	*burning;
-	int				order_color[3];
-	int				fractale;
+	t_vect			*camera;
+	t_vect			*ecran;
+	t_point			res;
+	t_point			*pitch;
+	t_list			*object;
 	t_image			image;
 }					t_mlx;
 
@@ -99,38 +103,10 @@ unsigned int		*new_image(t_mlx *mlx, void **image);
 void				fill_pixel(t_mlx *mlx, int x, int y, unsigned int color);
 t_mlx				*init(int ac, char **av);
 void				affiche(t_mlx *mlx);
-void				mandelbrot_image(t_mlx *mlx, int puissance);
-void				init_quantum(t_mlx *mlx);
+t_vect				*new_vect(double x, double y, double z);
+t_point				*new_point(double x, double y);
 int					key_hook(int keycode, void *p);
-void				zoom_fractale(t_mlx *mlx,
-		t_point *zoom_point, int sens_zoom);
-t_point				*new_point(int x, int y);
 int					mouse_hook(int button, int x, int y, void *param);
-void				affiche_mlx(t_mlx *mlx);
-void				mandelbrot_image1(t_mlx *mlx, t_complex *c1, t_complex *c2);
-void				mlx_free(t_mlx **m);
-unsigned int		color(float percent);
-unsigned int		color1(double percent);
-void				translation_fractale(t_mlx *mlx,
-		int key, double translation);
-void				change_color(int tab[3]);
-unsigned int		color2(double percent, int ordre_color[3]);
-int					input_julia(int x, int y, t_mlx *mlx);
-void				julia_image(t_mlx *mlx);
-void				affiche_fractal(t_mlx *mlx);
-t_complex			*cmin_fractole(t_mlx *mlx);
-t_complex			*cmax_fractole(t_mlx *mlx);
-void				switch_mode(t_julia *julia);
-void				reset_fractole(t_mlx *mlx);
-void				read_fractol(t_mlx *mlx, char **av);
-void				init_julia(t_mlx *mlx);
-void				init_mandelbrot(t_mlx *mlx, int puissance);
-void				open_julia(t_mlx *mlx);
-void				open_mandelbrot(t_mlx *mlx, int puissance);
-void				open_next_fractol(t_mlx *mlx, int sens);
-void				up_iteration_max(t_mlx *mlx, double up);
-void				burning_ship_image(t_mlx *mlx);
-void				init_burning_ship(t_mlx *mlx);
-void				open_burning_ship(t_mlx *mlx);
+double				inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res);
 
 #endif

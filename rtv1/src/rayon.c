@@ -10,4 +10,4 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-http://nguyen.univ-tln.fr/share/Infographie3D/trans_raytracing.pdf
+
