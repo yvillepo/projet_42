@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:42:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/09 17:06:06 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/23 00:30:10 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ t_mlx			*init(int ac, char **av)
 	if (ac < 2 || (ft_strcmp(av[1], "mandelbrot") < 0 &&
 		ft_strcmp(av[1], "julia") && ft_strcmp(av[1], "burning")))
 	{
-		ft_putendl("USAGE : /fractol \"mandelbrot\", \"julia\", \"burning\"\
-[ [ ITERATION MAX ] [ TAILLE FENAITRE ] ]");
+		ft_putendl("USAGE : ./fractol \"mandelbrot[3-6]\", \"julia\", \
+\"burning\" [ [ ITERATION MAX ] [ TAILLE FENAITRE ] ]");
 		exit(0);
 	}
 	m = ft_memalloc(sizeof(*m));

@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 05:28:18 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/09 17:07:07 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/23 00:29:30 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void			read_fractol(t_mlx *mlx, char **av)
 		open_burning_ship(mlx);
 	else
 	{
-		ft_putendl("USAGE : /fractol \"mandelbrot[3-6]\", \"julia\",\
-\"burning\" [ [ ITERATION MAX ] [ TAILLE FENAITRE ] ]\n");
+		ft_putendl("USAGE : ./fractol \"mandelbrot[3-6]\", \"julia\",\
+\"burning\" [ [ ITERATION MAX ] [ TAILLE FENAITRE ] ]");
 		exit(0);
 	}
 }
@@ -72,10 +72,13 @@ void			open_next_fractol(t_mlx *mlx, int sens)
 
 void			up_iteration_max(t_mlx *mlx, double up)
 {
+	char	*s;
+
 	mlx->iteration *= up;
 	if (mlx->iteration < 25)
 		mlx->iteration = 25;
 	affiche_fractal(mlx);
 	mlx_string_put(mlx->mlx, mlx->win, 20, 20,
-			0xFFFFFF, ft_itoa(mlx->iteration));
+			0xFFFFFF, s = ft_itoa(mlx->iteration));
+	free(s);
 }

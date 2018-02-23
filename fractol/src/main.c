@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 23:10:32 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/09 18:09:03 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/22 23:50:06 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Fractal:\n\
 	Entrer/Quiter mode zoom (julia)               : return\n\
 	Changer les couleurs                          : ESPACE\n\
 	Augmenter precision (iteration max)           : X\n\
-	Diminuer precision (iteration max)            : W\n\
+	Diminuer precision (iteration max)            : Z\n\
 	Reset fractal                                 : R\n\
 _______________________________________________________________\n");
 }
