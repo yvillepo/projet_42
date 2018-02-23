@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 23:10:32 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/22 23:50:06 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/23 04:15:29 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ _____________________________________________________________\n\
 ARGUMENT:\n\
 	Arg1            = Nom fractal (mandelbrot, julia, burning)\n\
 	Arg2 (optionel) = Nombre itterations\n\
-	Arg3 (optionel) = Taille fenaitre (en pixel)\n\
+	Arg3 (optionel) = Taille fenetre (en pixel)\n\
 \n\
 CONTROLS:\n\
 Translation:\n\
