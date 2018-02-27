@@ -120,5 +120,6 @@ t_complex			*new_complex(double r, double i);
 double				mod2(t_complex *z1);
 void				ft_swap(int *x1, int *x2);
 double				ft_abs_double(double x);
+int					get_next_line(int fd, char **line);
 
 #endif
