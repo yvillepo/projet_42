@@ -20,3 +20,36 @@ t_point	*new_point(double x, double y)
 	new->y = y;
 	return (new);
 }
+
+void	free_tab(char **tabstr)
+{
+	if (!tabstr)
+		return ;
+	while (*tabstr)
+	{
+		if (*tabstr)
+			free(*tabstr);
+		tabstr++;
+	}
+	*tabstr = NULL;
+}
+
+int             len_tabstr(char **tabstr)
+{
+	int             i;
+
+	i = 0;
+	while (*tabstr)
+	{
+		tabstr++;
+		i++;
+	}
+	return (i);
+}
+
+void	free_tabstr(char ***tabstr)
+{
+	free_tab(*tabstr);
+	if (*tabstr)
+		free(*tabstr);
+}

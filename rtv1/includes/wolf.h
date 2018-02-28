@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yvillepo <yvillepo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/09 17:07:46 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/28 02:45:18 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_H
 # define WOLF_H
+
+#include "stdio.h"
 
 # include "mlx.h"
 # include "libft.h"
@@ -91,8 +93,8 @@ typedef struct		s_mlx
 	int				height;
 	void			*mlx;
 	void			*win;
-	t_vect			*camera;
-	t_vect			*ecran;
+	t_vect			*camera_pos;
+	t_vect			*camera_dir;
 	t_point			res;
 	t_point			*pitch;
 	t_list			*object;
@@ -108,5 +110,8 @@ t_point				*new_point(double x, double y);
 int					key_hook(int keycode, void *p);
 int					mouse_hook(int button, int x, int y, void *param);
 double				inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res);
+void				parse(t_mlx *mlx, char *file);
+void				free_tabstr(char ***tab);
+int					len_tabstr(char **tabstr);
 
 #endif

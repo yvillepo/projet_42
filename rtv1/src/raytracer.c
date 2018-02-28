@@ -15,9 +15,9 @@ double			inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res)
 	double	t;
 	t_vect	v;
 
-	v.x = mlx->camera->x - sphere->centre->x;
-	v.y = mlx->camera->y - sphere->centre->y;
-	v.z = mlx->camera->z - sphere->centre->z;
+	v.x = mlx->camera_pos->x - sphere->centre->x;
+	v.y = mlx->camera_pos->y - sphere->centre->y;
+	v.z = mlx->camera_pos->z - sphere->centre->z;
 	a = dir->x * dir->x + dir->y * dir->y + dir->z * dir->z; 
 	b = 2 *  dir->x * v.x + dir->y * v.y + dir->z * v.z;
 	delta = b * b - 4 * a * (v.x * v.x + v.y * v.y + v.z * v.z); 

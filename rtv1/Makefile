@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         #
+#    By: yvillepo <yvillepo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2018/02/14 01:39:48 by yvillepo         ###   ########.fr        #
+#    Updated: 2018/02/28 03:03:52 by yvillepo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,17 @@ NAME	= fractol
 
 SRC = main.c \
 	  init.c \
+	  affiche.c \
+	  hook.c \
+	  raytracer.c \
+	  read.c \
+	  util.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra #-Werror 
 
 # mlx library
 FRAMEWORK	=  -framework OpenGL -framework AppKit
@@ -56,7 +61,7 @@ $(MLX_LIB):
 	@make -C $(MLX)
 
 $(NAME): $(OBJ) $(FT_LIB) $(MLX_LIB)
-	$(CC) $(OBJ) $(FRAMEWORK) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
+	@$(CC) $(OBJ) $(FRAMEWORK) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR)

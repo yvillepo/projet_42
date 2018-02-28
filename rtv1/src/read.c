@@ -1,30 +1,79 @@
 #include "wolf.h"
 #include <fcntl.h>
 
-void	read_vect(t_vect *vect, char **point)
+t_vect	*read_vect(int fd)
 {
-	vect->x = ft_atoi(*point);
-	vect->y = ft_atoi(point[1]);
-	vect->z = ft_atoi(point[2]);
+	char 	*line;
+	char 	**point;
+	t_vect	*v;
+
+	v = ft_malloc(sizeof(*v));
+	if (get_next_line(fd, &line) == 0)
+		exit_error("erreur fichier emtree");
+	point = ft_strsplit(line,' ');
+	if(len_tabstr(point) < 3)
+		exit_error("erreur fichier entree");
+	v->x = ft_atoi(*point);
+	v->y = ft_atoi(point[1]);
+	v->z = ft_atoi(point[2]);
+	free_tabstr(&point);
+	free(line);
+	return (v);
 }
 
-static int		read_object(t_mlx *mlx, int fd)
+static void	read_camera(t_mlx *mlx, int fd)
 {
-	char	*line;
-	char	**data;
+	mlx->camera_pos = read_vect(fd);
+	mlx->camera_dir = read_vect(fd);
+}
 
+static void		read_sphere(t_sphere *sphere, int fd)
+{
+	char *line;
+
+	sphere->centre = read_vect(fd);
 	if (get_next_line(fd, &line) == 0)
-		return (0);
-	data = ft_strsplit(line,' ');
-	//read_vect(mlx->
-	return (1);
+		exit_error("erreur fichier emtree");
+	sphere->rayon = ft_atoi(line);
+	free (line);
+}
+
+static void		read_object(t_mlx *mlx, char *obj, int fd)
+{
+	t_object	*object;
+
+	object = malloc(sizeof(*object));
+	if (mlx->object == 0)
+		mlx->object = ft_lstnew(object, 1);
+	else
+	{
+		ft_lstadd(&(mlx->object), ft_lstnew(object, 1));
+	}
+	if (*obj == 's')
+	{
+	//	object->type = SPHERE;
+		((t_object*)(mlx->object->content))->type = SPHERE;
+		printf("%d\n",((t_object*)(mlx->object->content))->type);
+		printf("%d\n",object->type);
+		((t_object*)(mlx->object->content))->form = ft_malloc(sizeof(t_sphere));
+	//	object->form = ft_malloc(sizeof(t_sphere));
+	//	read_sphere(object->form, fd);
+		read_sphere(((t_object*)(mlx->object->content))->form, fd);
+	}
 }
 
 void	parse(t_mlx *mlx, char *file)
 {
 	int		fd;
 	char	*line;
+	char	**data;
 
 	fd = open(file, O_RDONLY);
-	get_next_line(fd, &line);
+	read_camera(mlx, fd);
+	while (get_next_line(fd, &line))
+	{
+		read_object(mlx, line, fd);
+		printf("%d\n",((t_object*)(mlx->object->content))->type);
+		free(line);
+	}
 }
