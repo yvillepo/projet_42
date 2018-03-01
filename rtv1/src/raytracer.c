@@ -55,7 +55,7 @@ static t_color	calc(t_mlx *mlx, t_vect *dir, t_list *object)
 			min = t;
 		}
 		object = object->next;
-	};
+	}
 	return (color);
 }
 
@@ -86,6 +86,6 @@ void		trace_ray(t_mlx *mlx, t_list *object)
 			color = intersec(mlx, i, j, object);
 			fill_pixel(mlx, i, j, color.color); 
 		}
+		affiche(mlx);
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: yvillepo <yvillepo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/28 02:45:18 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/02/28 23:21:29 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ double				inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res);
 void				parse(t_mlx *mlx, char *file);
 void				free_tabstr(char ***tab);
 int					len_tabstr(char **tabstr);
+void				trace_ray(t_mlx *mlx, t_list *object);
 
 #endif

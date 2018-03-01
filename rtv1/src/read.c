@@ -21,6 +21,17 @@ t_vect	*read_vect(int fd)
 	return (v);
 }
 
+void		read_color(t_color *color, int fd)
+{
+	char 	*line;
+
+	if (get_next_line(fd, &line) == 0)
+		exit_error("erreur fichier emtree");
+	printf("%x", ft_atoi_base(line, 16));
+	color->color = ft_atoi_base(line, 16);
+	free(line);
+}
+
 static void	read_camera(t_mlx *mlx, int fd)
 {
 	mlx->camera_pos = read_vect(fd);
@@ -53,13 +64,13 @@ static void		read_object(t_mlx *mlx, char *obj, int fd)
 	{
 	//	object->type = SPHERE;
 		((t_object*)(mlx->object->content))->type = SPHERE;
-		printf("%d\n",((t_object*)(mlx->object->content))->type);
-		printf("%d\n",object->type);
 		((t_object*)(mlx->object->content))->form = ft_malloc(sizeof(t_sphere));
 	//	object->form = ft_malloc(sizeof(t_sphere));
 	//	read_sphere(object->form, fd);
 		read_sphere(((t_object*)(mlx->object->content))->form, fd);
 	}
+	read_color(&(((t_object*)(mlx->object->content))->color), fd);
+	
 }
 
 void	parse(t_mlx *mlx, char *file)
@@ -73,7 +84,6 @@ void	parse(t_mlx *mlx, char *file)
 	while (get_next_line(fd, &line))
 	{
 		read_object(mlx, line, fd);
-		printf("%d\n",((t_object*)(mlx->object->content))->type);
 		free(line);
 	}
 }
