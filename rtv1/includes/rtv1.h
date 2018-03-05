@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yvillepo <yvillepo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yvillepo <yvillepo@student.44.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
 /*   Updated: 2018/02/28 23:21:29 by yvillepo         ###   ########.fr       */
@@ -62,6 +62,18 @@ typedef struct		s_vect
 	double			z;
 }					t_vect;
 
+typedef struct		s_line
+{
+	t_vect			*dir;
+	t_vect			*origin;
+}					t_line;
+
+typedef struct		s_plane;
+{
+	t_vect			*normal;
+	double			d;
+}					t_plane;
+
 typedef struct		s_point
 {
 	double			x;
@@ -114,5 +126,8 @@ void				parse(t_mlx *mlx, char *file);
 void				free_tabstr(char ***tab);
 int					len_tabstr(char **tabstr);
 void				trace_ray(t_mlx *mlx, t_list *object);
-
+int		is_between(t_vect *A, t_vect *B, t_vect *M);
+double				is_coplanar(t_vect *A, t_vect *B);
+void				print_vect(char *s, t_vect *v);
+t_vect				unit_scale(double k, t_vect *v);
 #endif
