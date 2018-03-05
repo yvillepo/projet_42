@@ -6,7 +6,7 @@
 /*   By: yvillepo <yvillepo@student.44.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/28 23:21:29 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/05 10:55:21 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,17 @@ typedef struct		s_vect
 	double			z;
 }					t_vect;
 
-typedef struct		s_line
-{
-	t_vect			*dir;
-	t_vect			*origin;
-}					t_line;
-
-typedef struct		s_plane;
-{
-	t_vect			*normal;
-	double			d;
-}					t_plane;
-
 typedef struct		s_point
 {
 	double			x;
 	double			y;
 }					t_point;
+
+typedef struct		s_line
+{
+	t_vect			*dir;
+	t_vect			*origin;
+}					t_line;
 
 typedef struct		s_image
 {
@@ -98,6 +92,12 @@ typedef	struct		s_sphere
 	t_vect			*centre;
 	double			rayon;
 }					t_sphere;
+
+typedef struct		s_plane
+{
+	t_vect			*normal;
+	double			d;
+}					t_plane;
 
 typedef struct		s_mlx
 {
@@ -130,4 +130,6 @@ int		is_between(t_vect *A, t_vect *B, t_vect *M);
 double				is_coplanar(t_vect *A, t_vect *B);
 void				print_vect(char *s, t_vect *v);
 t_vect				unit_scale(double k, t_vect *v);
+void				calc_point(t_line *line, double t, t_vect *res);
+
 #endif
