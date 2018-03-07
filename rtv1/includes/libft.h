@@ -6,15 +6,25 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:56:24 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/01 01:12:51 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/01/26 07:21:19 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# define BUFF_SIZE 100000
+
+typedef struct	s_fd
+{
+	int			fd;
+	char		*str;
+	struct s_fd	*next;
+}				t_fd;
 
 typedef struct		s_list
 {
@@ -120,7 +130,8 @@ t_complex			*new_complex(double r, double i);
 double				mod2(t_complex *z1);
 void				ft_swap(int *x1, int *x2);
 double				ft_abs_double(double x);
-int					ft_atoi_base(const char *str, unsigned int base);
+int					ft_atoi_base(const char *str, int base);
 int					get_next_line(int fd, char **line);
+double				ft_atof(const char *str);
 
 #endif

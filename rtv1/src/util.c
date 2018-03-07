@@ -53,3 +53,8 @@ void	free_tabstr(char ***tabstr)
 	if (*tabstr)
 		free(*tabstr);
 }
+
+double	calc_height_screen(t_mlx *mlx)
+{
+	return (tan(mlx->fov / 2) * 2);
+}

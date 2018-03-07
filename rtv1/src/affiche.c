@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "rtv1.h"
 
 unsigned int	*new_image(t_mlx *mlx, void **image)
 {

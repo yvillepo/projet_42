@@ -38,24 +38,23 @@ t_vect	unit_scale(double k, t_vect *v)
 	return (res);
 }
 
-int		is_in_pyramid(t_mlx *mlx, t_vect **ecran, t_vect *M)
-{
-	t_plane	*p;
-
-	p = calc_plane(mlx->camera_dir, M);
-
-}
-
 t_plane	*calc_plane(t_vect *normal, t_vect *A)
 {
 	t_plane	*p;
 
 	p = ft_malloc(sizeof(*p));
-	p->dir = normal;
+	p->normal = normal;
 	p->d = A->x  * normal->x + A->y * normal->y + A->z * normal->z;
 	return (p);
 }
 
+int		is_in_pyramid(t_mlx *mlx, t_vect **ecran, t_vect *M)
+{
+	t_plane	*p;
+
+	p = calc_plane(mlx->camera_dir, M);
+	return (0);
+}
 
 void	print_vect(char *s, t_vect *v)
 {

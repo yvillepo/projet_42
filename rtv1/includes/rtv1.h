@@ -48,6 +48,7 @@
 # define DEFAULT_HEIGHT 800
 # define SPHERE 0
 # define T_Z 6
+# define PI 3.1415926535897932384
 
 typedef union		u_color
 {
@@ -103,12 +104,14 @@ typedef struct		s_mlx
 {
 	int				width;
 	int				height;
+	double			h;
 	void			*mlx;
 	void			*win;
 	t_vect			*camera_pos;
 	t_vect			*camera_dir;
+	double			fov;
 	t_point			res;
-	t_point			*pitch;
+	double			pitch;
 	t_list			*object;
 	t_image			image;
 }					t_mlx;
@@ -131,5 +134,11 @@ double				is_coplanar(t_vect *A, t_vect *B);
 void				print_vect(char *s, t_vect *v);
 t_vect				unit_scale(double k, t_vect *v);
 void				calc_point(t_line *line, double t, t_vect *res);
+double				calc_height_screen(t_mlx *mlx);
+void				read_sphere(t_sphere *sphere, int fd);
+double				inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res);
+t_vect				*read_vect(int fd);
+t_color				intersec(t_mlx *mlx, int i, int j, t_list *object);
+t_vect				*read_vect(int fd);
 
 #endif

@@ -20,13 +20,18 @@ SRC = main.c \
 	  hook.c \
 	  raytracer.c \
 	  read.c \
-	  util.c
+	  util.c \
+	  plane.c \
+	  math.c \
+	  line.c \
+	  sphere.c \
+	  intersection.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
 CC		= gcc
-CFLAGS	= -Wall -Wextra #-Werror 
+CFLAGS	= -g -Wall -Wextra -ggdb#-Werror 
 
 # mlx library
 FRAMEWORK	=  -framework OpenGL -framework AppKit
@@ -55,7 +60,7 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 	$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) $(MLX_INC) -o $@ -c $<
 
 $(FT_LIB):
-	@make -C $(FT)
+	make -C $(FT)
 
 $(MLX_LIB):
 	@make -C $(MLX)

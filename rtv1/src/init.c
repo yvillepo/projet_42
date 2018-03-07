@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "rtv1.h"
 
 t_mlx			*init(int ac, char **av)
 {
@@ -22,10 +22,10 @@ t_mlx			*init(int ac, char **av)
 	m->mlx = mlx_init();
 	m->width = 800;
 	m->height = 800;
+	m->fov = PI/2;
 	if (!((m->win = mlx_new_window(m->mlx,
 						m->width, m->height, "mlx 42"))))
 		exit_error("init");
-	m->pitch = new_point(1 / 800, 1 / 800);
 	m->object = NULL;
 	m->image.im = new_image(m, &(m->image.pim));
 	parse(m, av[1]);
