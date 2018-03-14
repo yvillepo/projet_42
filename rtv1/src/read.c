@@ -27,7 +27,6 @@ void		read_color(t_color *color, int fd)
 
 	if (get_next_line(fd, &line) == 0)
 		exit_error("fichier emtree");
-	printf("color %x", ft_atoi_base(line, 16));
 	color->color = (unsigned int)ft_atoi_base(line, 16);
 	free(line);
 }
@@ -43,22 +42,48 @@ static void		read_object(t_mlx *mlx, char *obj, int fd)
 {
 	t_object	*object;
 
+	if (*obj == '\n')
+		return;
 	object = malloc(sizeof(*object));
+	if (*obj == 's')
+		read_object_sphere(object, fd);
+	if (*obj == 'p')
+		read_object_plane(object, fd);
+	read_color(&(object->color), fd);
 	if (mlx->object == 0)
 		mlx->object = ft_lstnew(object, sizeof(*object));
 	else
 		ft_lstadd(&(mlx->object), ft_lstnew(object, sizeof(*object)));
-	if (*obj == 's')
+}
+
+void			print_camera(t_mlx *mlx)
+{
+	printf("pos camera %f %f %f\n",mlx->camera_pos->x,
+			mlx->camera_pos->y, mlx->camera_pos->z);
+	printf("dir camera %f %f %f\n",mlx->camera_dir->x,
+			mlx->camera_dir->y, mlx->camera_dir->z);
+}
+
+static void		print_object(t_mlx *mlx)
+{
+	t_object	*object;
+	t_list		*obj;
+	int			i = 0;
+
+	obj = mlx->object; 
+	print_camera(mlx);
+	while (obj)
 	{
-	//	object->type = SPHERE;
-		((t_object*)(mlx->object->content))->type = SPHERE;
-		((t_object*)(mlx->object->content))->form = ft_malloc(sizeof(t_sphere));
-	//	object->form = ft_malloc(sizeof(t_sphere));
-	//	read_sphere(object->form, fd);
-		read_sphere(((t_object*)(mlx->object->content))->form, fd);
+		object = obj->content; 
+		if (object->type == SPHERE)
+			print_sphere(object->form);
+		if (object->type == PLANE)
+			print_plane(object->form);
+		printf("color : %x\n\n", object->color.color);
+		obj = obj->next;
+		i++;
 	}
-	read_color(&(((t_object*)(mlx->object->content))->color), fd);
-	
+	printf("nb obj = %d\n",i);
 }
 
 void	parse(t_mlx *mlx, char *file)
@@ -75,4 +100,5 @@ void	parse(t_mlx *mlx, char *file)
 			free(line);
 		line = 0;
 	}
+	print_object(mlx);
 }

@@ -12,39 +12,34 @@
 
 #include "rtv1.h"
 
-void		read_object_plane(t_object *object, int fd)
+void		find_octo(t_vect *base, t_vect *y, t_vect *x)
 {
-	object->type = PLANE;
-	object->form = ft_malloc(sizeof(t_plane));
-	read_plane(object->form, fd);
+	
 }
 
-void		read_plane(t_plane *plane, int fd)
+void		read_cyl(t_cyl *cyl, int fd)
 {
 	t_vect	*A;
 
-	plane->normal = read_vect(fd);
-	A = read_vect(fd);
-	plane->d = -(plane->normal->x * A->x + plane->normal->y * A->y +
-			plane->normal->z * A->z);
-	free (A);
+	cyl->angle = read_vect(fd);
+	cyl->pos = read_vect(fd);
 }
 
-double	inter_plane(t_plane *plane, t_line *line)
+void		read_object_cyl(t_object *object, int fd)
 {
-	double	d;
-	
-	d = line->dir->x * plane->normal->x + line->dir->y * plane->normal->y 
-			+ line->dir->z * plane->normal->z;
-	if (d == 0)
-		return (-1);
-	d =(-((plane->normal->x * line->origin->x + plane->normal->y *
-					line->origin->y + plane->normal->z * line->origin->z + plane->d) / d));
-	return (d);
+	object->type = CYL;
+	object->form = ft_malloc(sizeof(t_cyl));
+	read_cyl(object->form, fd);
 }
 
-void	print_plane(t_plane *plane)
+
+double	inter_cyl(t_plane *plane, t_line *line)
 {
-	printf("plane :\nnomrmal : %f %f %f\nd : %f\n", plane->normal->x, plane->normal->y,
-			plane->normal->z, plane->d);
+
+}
+
+void	print_cyl(t_cyl *cyl)
+{
+	printf("plane :\nangle : %f %f %f\n positon : %f\n", cyl->angle->x, cyl->angle->y,
+			cyl->angle->z, cyl->pos->x, cyl->pos->y, cyl->pos->z);
 }

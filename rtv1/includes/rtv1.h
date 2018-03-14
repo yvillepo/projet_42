@@ -47,6 +47,9 @@
 # define PERCENT_ZOOM 150
 # define DEFAULT_HEIGHT 800
 # define SPHERE 0
+# define PLANE 1
+# define CYL 2
+# define CONE 2
 # define T_Z 6
 # define PI 3.1415926535897932384
 
@@ -100,6 +103,12 @@ typedef struct		s_plane
 	double			d;
 }					t_plane;
 
+typedef struct		s_cyl
+{
+	t_vect			*angle;
+	t_vect			*pos;
+}					t_cyl;
+
 typedef struct		s_mlx
 {
 	int				width;
@@ -124,7 +133,6 @@ t_vect				*new_vect(double x, double y, double z);
 t_point				*new_point(double x, double y);
 int					key_hook(int keycode, void *p);
 int					mouse_hook(int button, int x, int y, void *param);
-double				inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res);
 void				parse(t_mlx *mlx, char *file);
 void				free_tabstr(char ***tab);
 int					len_tabstr(char **tabstr);
@@ -136,9 +144,15 @@ t_vect				unit_scale(double k, t_vect *v);
 void				calc_point(t_line *line, double t, t_vect *res);
 double				calc_height_screen(t_mlx *mlx);
 void				read_sphere(t_sphere *sphere, int fd);
-double				inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res);
+double				inter_sphere(t_sphere *sphere, t_line *line);
 t_vect				*read_vect(int fd);
 t_color				intersec(t_mlx *mlx, int i, int j, t_list *object);
 t_vect				*read_vect(int fd);
+void				read_object_sphere(t_object *object, int fd);
+void				read_plane(t_plane *plane, int fd);
+void				read_object_plane(t_object *object, int fd);
+void				print_sphere(t_sphere *sphere);
+void				print_plane(t_plane *plane);
+double				inter_plane(t_plane *plane, t_line *line);
 
 #endif

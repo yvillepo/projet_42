@@ -12,6 +12,12 @@
 
 #include "rtv1.h"
 
+void			calc_pitch(t_mlx *mlx)
+{
+	mlx->h = calc_height_screen(mlx);
+	mlx->pitch = mlx->h / mlx->height;
+}
+
 t_mlx			*init(int ac, char **av)
 {
 	t_mlx	*m;
@@ -29,5 +35,6 @@ t_mlx			*init(int ac, char **av)
 	m->object = NULL;
 	m->image.im = new_image(m, &(m->image.pim));
 	parse(m, av[1]);
+	calc_pitch(m);
 	return (m);
 }

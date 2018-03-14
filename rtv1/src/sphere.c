@@ -1,5 +1,12 @@
 #include "rtv1.h"
 
+void		read_object_sphere(t_object *object, int fd)
+{
+		object->type = SPHERE;
+		object->form = ft_malloc(sizeof(t_sphere));
+		read_sphere(object->form, fd);
+}
+
 void		read_sphere(t_sphere *sphere, int fd)
 {
 	char *line;
@@ -11,27 +18,32 @@ void		read_sphere(t_sphere *sphere, int fd)
 	free (line);
 }
 
-double			inter_sphere(t_mlx *mlx, t_vect *dir, t_sphere *sphere, t_vect *res)
+double			inter_sphere(t_sphere *sphere, t_line *line)
 {
 	double	a;
 	double	b;
 	double	delta;
 	double	t;
-	t_vect	v;
+	t_vect	*v;
 
-	v.x = mlx->camera_pos->x - sphere->centre->x;
-	v.y = mlx->camera_pos->y - sphere->centre->y;
-	v.z = mlx->camera_pos->z - sphere->centre->z;
-	a = dir->x * dir->x + dir->y * dir->y + dir->z * dir->z; 
-	b = 2 * (dir->x * v.x + dir->y * v.y + dir->z * v.z);
-	delta = b * b - 4 * a * (v.x * v.x + v.y * v.y + v.z * v.z -
+	v = new_vect(line->origin->x - sphere->centre->x,
+			line->origin->y - sphere->centre->y, line->origin->z - sphere->centre->z);
+	a = line->dir->x * line->dir->x + line->dir->y * line->dir->y
+		+ line->dir->z * line->dir->z;
+	b = 2 * (line->dir->x * v->x + line->dir->y * v->y + line->dir->z * v->z);
+	delta = b * b - 4 * a * (v->x * v->x + v->y * v->y + v->z * v->z -
 			sphere->rayon * sphere->rayon); 
+	free (v);
 	if (delta >= 0)
 	{
 		t = (-b - sqrt(delta)) / (2 * a);
-		res = new_vect(dir->x * t + mlx->camera_pos->x, dir->y
-				* t + mlx->camera_pos->y, dir->z * t + mlx->camera_pos->z);
 		return (t);
 	}
 	return (-1);
+}
+
+void		print_sphere(t_sphere *sphere)
+{
+	printf("sphere :\ncentre : %f %f %f\nR: %f\n", sphere->centre->x, sphere->centre->y,
+			sphere->centre->z, sphere->rayon);
 }
