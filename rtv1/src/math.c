@@ -59,11 +59,15 @@ int		is_in_pyramid(t_mlx *mlx, t_vect **ecran, t_vect *M)
 double	solv_2nd(double a, double b, double c)
 {
 	double d;
+	double res;
 
 	d = b * b - 4 * a * c;
 	if (d < 0)
 		return (-1);
-	return ((-b - sqrt(d)) / (2 * a));
+	res = (-b - sqrt(d)) / (2 * a);
+	if (res < 0)
+		res = (-b + sqrt(d)) / (2 * a);
+	return (res);
 }
 
 void	print_vect(char *s, t_vect *v)

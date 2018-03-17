@@ -73,9 +73,9 @@ double	inter_cyl(t_cyl *cyl, t_line *l)
 		 cyl->dir->x * cyl->dir->y * (l->dir->x * D->y + l->dir->y * D->x) +
 		 cyl->dir->x * cyl->dir->z * (l->dir->x * D->z + l->dir->z * D->x) +
 		 cyl->dir->y * cyl->dir->z * (l->dir->y * D->z + l->dir->z * D->y)));
-	c = D->x * D->x * (1 + cyl->dir->x * cyl->dir->x) + 
-	D->y * D->y * (1 + cyl->dir->y * cyl->dir->y) +
-	D->z * D->z * (1 + cyl->dir->z * cyl->dir->z) + 2 *
+	c = D->x * D->x * (1 - K * cyl->dir->x * cyl->dir->x) + 
+	D->y * D->y * (1 - K * cyl->dir->y * cyl->dir->y) +
+	D->z * D->z * (1 - K * cyl->dir->z * cyl->dir->z) - 2 * K *
 	(cyl->dir->x * cyl->dir->y * D->x * D->y +
 	cyl->dir->x * cyl->dir->z * D->x * D->z +
 	cyl->dir->y * cyl->dir->z * D->y * D->z) - cyl->r * cyl->r;
