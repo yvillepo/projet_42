@@ -56,6 +56,16 @@ int		is_in_pyramid(t_mlx *mlx, t_vect **ecran, t_vect *M)
 	return (0);
 }
 
+double	solv_2nd(double a, double b, double c)
+{
+	double d;
+
+	d = b * b - 4 * a * c;
+	if (d < 0)
+		return (-1);
+	return ((-b - sqrt(d)) / (2 * a));
+}
+
 void	print_vect(char *s, t_vect *v)
 {
 	printf("%s = %f %f %f\n",s, v->x, v->y, v->z);

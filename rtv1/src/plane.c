@@ -48,3 +48,15 @@ void	print_plane(t_plane *plane)
 	printf("plane :\nnomrmal : %f %f %f\nd : %f\n", plane->normal->x, plane->normal->y,
 			plane->normal->z, plane->d);
 }
+
+t_vect	*p_normal(t_vect *u, t_vect *v)
+{
+	t_vect	*res;
+
+	res = ft_malloc(sizeof(*res));
+	res->x = 1;
+	res->y = res->x * (u->x - v->x * u->z / v->z) / (v->y * u->z / v->z - u->y); 
+	res->z = -(res->x * v->x + res->y * v->y) / v->z;
+	v_unit(res);	
+	return (res);
+}

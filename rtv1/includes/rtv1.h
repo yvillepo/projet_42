@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF_H
-# define WOLF_H
+#ifndef RTV1_H
+# define RTV1_H
 
 #include "stdio.h"
 
@@ -105,8 +105,9 @@ typedef struct		s_plane
 
 typedef struct		s_cyl
 {
-	t_vect			*angle;
+	t_vect			*dir;
 	t_vect			*pos;
+	double			r;
 }					t_cyl;
 
 typedef struct		s_mlx
@@ -137,7 +138,7 @@ void				parse(t_mlx *mlx, char *file);
 void				free_tabstr(char ***tab);
 int					len_tabstr(char **tabstr);
 void				trace_ray(t_mlx *mlx, t_list *object);
-int		is_between(t_vect *A, t_vect *B, t_vect *M);
+int					is_between(t_vect *A, t_vect *B, t_vect *M);
 double				is_coplanar(t_vect *A, t_vect *B);
 void				print_vect(char *s, t_vect *v);
 t_vect				unit_scale(double k, t_vect *v);
@@ -154,5 +155,15 @@ void				read_object_plane(t_object *object, int fd);
 void				print_sphere(t_sphere *sphere);
 void				print_plane(t_plane *plane);
 double				inter_plane(t_plane *plane, t_line *line);
+void				v_print(t_vect *v);
+int					v_is_unit(t_vect *v);
+void				v_unit(t_vect *v);
+double				v_l(t_vect *v);
+t_vect				*p_normal(t_vect *u, t_vect *v);
+t_vect				*find_octo(t_vect *v);
+double				solv_2nd(double a, double b, double c);
+void				read_object_cyl(t_object *object, int fd);
+void				print_cyl(t_cyl *cyl);
+double				inter_cyl(t_cyl *cyl, t_line *l);
 
 #endif

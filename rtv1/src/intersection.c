@@ -4,7 +4,7 @@ static void		calc_dir(t_mlx *mlx,t_vect *dir, int i, int j)
 {
 	t_vect	M;
 
-	M.x = +(mlx->h / 2) - mlx->pitch * i;
+	M.x = -(mlx->h / 2) + mlx->pitch * i;
 	M.y = +(mlx->h / 2) - mlx->pitch * j;
 	dir->x = M.x - mlx->camera_pos->x;
 	dir->y = M.y - mlx->camera_pos->y;
@@ -20,6 +20,8 @@ double			intersec_unit(t_object	*obj, t_line *line)
 		t = inter_sphere(obj->form, line);
 	if (obj->type == PLANE)
 		t = inter_plane(obj->form, line);
+	if (obj->type == CYL)
+		t = inter_cyl(obj->form, line);
 	return (t);
 }
 

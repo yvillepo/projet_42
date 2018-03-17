@@ -25,7 +25,8 @@ SRC = main.c \
 	  math.c \
 	  line.c \
 	  sphere.c \
-	  intersection.c
+	  intersection.c \
+	  cyl.c \
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
@@ -68,6 +69,8 @@ $(MLX_LIB):
 $(NAME): $(OBJ) $(FT_LIB) $(MLX_LIB)
 	@$(CC) $(OBJ) $(FRAMEWORK) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
 
+test: all
+	@$(CC) $(OBJ) $(FRAMEWORK) $(MLX_LNK) -lm -o test
 clean:
 	@rm -rf $(OBJDIR)
 	@make -C $(FT) clean
