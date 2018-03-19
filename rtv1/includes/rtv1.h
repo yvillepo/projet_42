@@ -49,7 +49,7 @@
 # define SPHERE 0
 # define PLANE 1
 # define CYL 2
-# define CONE 2
+# define CONE 3
 # define T_Z 6
 # define PI 3.1415926535897932384
 
@@ -110,6 +110,13 @@ typedef struct		s_cyl
 	double			r;
 }					t_cyl;
 
+typedef struct		s_cone
+{
+	t_vect			*dir;
+	t_vect			*pos;
+	double			a;
+}					t_cone;
+
 typedef struct		s_mlx
 {
 	int				width;
@@ -119,6 +126,7 @@ typedef struct		s_mlx
 	void			*win;
 	t_vect			*camera_pos;
 	t_vect			*camera_dir;
+	t_vect			*light;
 	double			fov;
 	t_point			res;
 	double			pitch;
@@ -142,7 +150,7 @@ int					is_between(t_vect *A, t_vect *B, t_vect *M);
 double				is_coplanar(t_vect *A, t_vect *B);
 void				print_vect(char *s, t_vect *v);
 t_vect				unit_scale(double k, t_vect *v);
-void				calc_point(t_line *line, double t, t_vect *res);
+t_vect				*calc_point(t_line *line, double t);
 double				calc_height_screen(t_mlx *mlx);
 void				read_sphere(t_sphere *sphere, int fd);
 double				inter_sphere(t_sphere *sphere, t_line *line);
@@ -165,5 +173,14 @@ double				solv_2nd(double a, double b, double c);
 void				read_object_cyl(t_object *object, int fd);
 void				print_cyl(t_cyl *cyl);
 double				inter_cyl(t_cyl *cyl, t_line *l);
+double				inter_cone(t_cone *cone, t_line *l);
+void				print_cone(t_cone *cone);
+void				read_object_cone(t_object *object, int fd);
+t_plane				*calc_plane(t_vect *normal, t_vect *A);
+t_vect				*v_add(t_vect *u1, t_vect *u2);
+t_vect				*v_sub(t_vect *u1, t_vect *u2);
+double				v_mult(t_vect *u1, t_vect *u2);
+double				deg_to_rad(double a);
+t_vect				*v_cross(t_vect *u1, t_vect *u2);
 
 #endif

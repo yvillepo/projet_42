@@ -44,16 +44,8 @@ t_plane	*calc_plane(t_vect *normal, t_vect *A)
 
 	p = ft_malloc(sizeof(*p));
 	p->normal = normal;
-	p->d = A->x  * normal->x + A->y * normal->y + A->z * normal->z;
+	p->d = -(A->x  * normal->x + A->y * normal->y + A->z * normal->z);
 	return (p);
-}
-
-int		is_in_pyramid(t_mlx *mlx, t_vect **ecran, t_vect *M)
-{
-	t_plane	*p;
-
-	p = calc_plane(mlx->camera_dir, M);
-	return (0);
 }
 
 double	solv_2nd(double a, double b, double c)
@@ -68,6 +60,14 @@ double	solv_2nd(double a, double b, double c)
 	if (res < 0)
 		res = (-b + sqrt(d)) / (2 * a);
 	return (res);
+}
+
+double	deg_to_rad(double a)
+{
+	double ret;
+
+	ret = a * PI / 180.0;
+	return (ret);
 }
 
 void	print_vect(char *s, t_vect *v)

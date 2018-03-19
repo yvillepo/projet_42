@@ -1,6 +1,6 @@
 #include "rtv1.h"
 
-static void		calc_dir(t_mlx *mlx,t_vect *dir, int i, int j)
+static void		calc_diir(t_mlx *mlx,t_vect *dir, int i, int j)
 {
 	t_vect	M;
 
@@ -9,6 +9,28 @@ static void		calc_dir(t_mlx *mlx,t_vect *dir, int i, int j)
 	dir->x = M.x - mlx->camera_pos->x;
 	dir->y = M.y - mlx->camera_pos->y;
 	dir->z = 1;
+}
+
+static void		calc_dir(t_mlx *mlx, t_vect *dir,  double x , double y)
+{
+	t_vect	M;
+	t_vect	*i;
+	t_vect	*j;
+	t_vect	*k;
+
+	M.x = -(mlx->h / 2) + mlx->pitch * x;
+	M.y = +(mlx->h / 2) - mlx->pitch * y;
+	k = mlx->camera_dir;
+	v_unit(k);
+	j = new_vect(0, 1, 0);
+	i = v_cross(k, j);
+	v_unit(i);
+	free(j);
+	j = v_cross(i, k);
+	dir->x = M.x * i->x + M.y * j->x +  k->x;
+	dir->y = M.x * i->y + M.y * j->y +  k->y;
+	dir->z = M.x * i->z + M.y * j->z +  k->z;
+	v_unit(dir);
 }
 
 double			intersec_unit(t_object	*obj, t_line *line)
@@ -22,6 +44,8 @@ double			intersec_unit(t_object	*obj, t_line *line)
 		t = inter_plane(obj->form, line);
 	if (obj->type == CYL)
 		t = inter_cyl(obj->form, line);
+	if (obj->type == CONE)
+		t = inter_cone(obj->form, line);
 	return (t);
 }
 
@@ -39,13 +63,17 @@ static t_color	calc(t_mlx *mlx, t_vect *dir, t_list *object)
 	while (object)
 	{
 		t = intersec_unit(object->content, &line); 
-		if (t < min && t > 0)
+		if (t < min && t >= 0)
 		{
 			color =  ((t_object*)object->content)->color;
 			min = t;
 		}
 		object = object->next;
 	}
+/*	line->dir = calc_point(&line, t);
+	line->origin = mlx->light;
+	if (shadow(object->content, mlx->light, line, t)))
+		return (0); */
 	return (color);
 }
 

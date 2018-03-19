@@ -11,12 +11,7 @@
 /* ************************************************************************** */
 
 #include "rtv1.h"
-/*
-void		find_octo(t_vect *base, t_vect *y, t_vect *x)
-{
-	
-}
-*/
+
 void		read_cyl(t_cyl *cyl, int fd)
 {
 	char	*line;
@@ -34,16 +29,6 @@ void		read_object_cyl(t_object *object, int fd)
 	object->type = CYL;
 	object->form = ft_malloc(sizeof(t_cyl));
 	read_cyl(object->form, fd);
-}
-
-double	calc_D(t_cyl *cyl, t_line *l)
-{
-	t_vect v;
-
-	if (cyl->dir->x == 0)
-	{
-	}
-	return(0);
 }
 
 double	inter_cyl(t_cyl *cyl, t_line *l)

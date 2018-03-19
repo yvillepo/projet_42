@@ -51,6 +51,8 @@ static void		read_object(t_mlx *mlx, char *obj, int fd)
 		read_object_plane(object, fd);
 	if (*obj == 'c' && obj[1] == 'y')
 		read_object_cyl(object, fd);
+	if (*obj == 'c' && obj[1] == 'o')
+		read_object_cone(object, fd);
 	read_color(&(object->color), fd);
 	if (mlx->object == 0)
 		mlx->object = ft_lstnew(object, sizeof(*object));
@@ -83,6 +85,8 @@ static void		print_object(t_mlx *mlx)
 			print_plane(object->form);
 		if (object->type == CYL)
 			print_cyl(object->form);
+		if (object->type == CONE)
+			print_cone(object->form);
 		printf("color : %x\n\n", object->color.color);
 		obj = obj->next;
 		i++;
