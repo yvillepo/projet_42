@@ -1,25 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersection.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/20 11:32:33 by yvillepo          #+#    #+#             */
+/*   Updated: 2018/03/20 11:35:45 by yvillepo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv1.h"
 
-static void		calc_diir(t_mlx *mlx,t_vect *dir, int i, int j)
+static void		calc_diir(t_mlx *mlx, t_vect *dir, int i, int j)
 {
-	t_vect	M;
+	t_vect	uv;
 
-	M.x = -(mlx->h / 2) + mlx->pitch * i;
-	M.y = +(mlx->h / 2) - mlx->pitch * j;
-	dir->x = M.x - mlx->camera_pos->x;
-	dir->y = M.y - mlx->camera_pos->y;
+	uv.x = -(mlx->h / 2) + mlx->pitch * i;
+	uv.y = +(mlx->h / 2) - mlx->pitch * j;
+	dir->x = uv.x - mlx->camera_pos->x;
+	dir->y = uv.y - mlx->camera_pos->y;
 	dir->z = 1;
 }
 
-static void		calc_dir(t_mlx *mlx, t_vect *dir,  double x , double y)
+static void		calc_dir(t_mlx *mlx, t_vect *dir, double x, double y)
 {
-	t_vect	M;
+	t_vect	uv;
 	t_vect	*i;
 	t_vect	*j;
 	t_vect	*k;
 
-	M.x = -(mlx->h / 2) + mlx->pitch * x;
-	M.y = +(mlx->h / 2) - mlx->pitch * y;
+	uv.x = -(mlx->h / 2) + mlx->pitch * x;
+	uv.y = -(mlx->h / 2) + mlx->pitch * y;
 	k = mlx->camera_dir;
 	v_unit(k);
 	j = new_vect(0, 1, 0);
@@ -27,13 +39,13 @@ static void		calc_dir(t_mlx *mlx, t_vect *dir,  double x , double y)
 	v_unit(i);
 	free(j);
 	j = v_cross(i, k);
-	dir->x = M.x * i->x + M.y * j->x +  k->x;
-	dir->y = M.x * i->y + M.y * j->y +  k->y;
-	dir->z = M.x * i->z + M.y * j->z +  k->z;
+	dir->x = uv.x * i->x + uv.y * j->x + k->x;
+	dir->y = uv.x * i->y + uv.y * j->y + k->y;
+	dir->z = uv.x * i->z + uv.y * j->z + k->z;
 	v_unit(dir);
 }
 
-double			intersec_unit(t_object	*obj, t_line *line)
+double			intersec_unit(t_object *obj, t_line *line)
 {
 	double	t;
 
@@ -62,10 +74,10 @@ static t_color	calc(t_mlx *mlx, t_vect *dir, t_list *object)
 	line.dir = dir;
 	while (object)
 	{
-		t = intersec_unit(object->content, &line); 
+		t = intersec_unit(object->content, &line);
 		if (t < min && t >= 0)
 		{
-			color =  ((t_object*)object->content)->color;
+			color = ((t_object*)object->content)->color;
 			min = t;
 		}
 		object = object->next;
@@ -84,5 +96,5 @@ t_color			intersec(t_mlx *mlx, int i, int j, t_list *object)
 
 	min = 0;
 	calc_dir(mlx, &dir, i, j);
-	return (calc(mlx, &dir, object)); 
+	return (calc(mlx, &dir, object));
 }

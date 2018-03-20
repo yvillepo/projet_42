@@ -6,7 +6,7 @@
 /*   By: yvillepo <yvillepo@student.44.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/05 10:55:21 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/20 13:06:46 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,8 @@ t_vect				*v_sub(t_vect *u1, t_vect *u2);
 double				v_mult(t_vect *u1, t_vect *u2);
 double				deg_to_rad(double a);
 t_vect				*v_cross(t_vect *u1, t_vect *u2);
+void			read_camera(t_mlx *mlx, int fd);
+
+void			print_object(t_mlx *mlx);
 
 #endif

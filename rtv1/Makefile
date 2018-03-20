@@ -6,7 +6,7 @@
 #    By: yvillepo <yvillepo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2018/02/28 03:03:52 by yvillepo         ###   ########.fr        #
+#    Updated: 2018/03/20 12:55:37 by yvillepo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRC = main.c \
 	  intersection.c \
 	  cyl.c \
 	  cone.c \
-	  vect.c
+	  vect.c \
+	  supr.c \
+	  camera.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

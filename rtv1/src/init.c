@@ -6,7 +6,7 @@
 /*   By: yvillepo <yvillepo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 00:42:44 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/02/28 03:57:35 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/20 11:31:53 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_mlx			*init(int ac, char **av)
 	m->mlx = mlx_init();
 	m->width = 800;
 	m->height = 800;
-	m->fov = PI/2;
+	m->fov = PI / 2;
 	if (!((m->win = mlx_new_window(m->mlx,
 						m->width, m->height, "mlx 42"))))
 		exit_error("init");

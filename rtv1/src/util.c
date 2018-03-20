@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   util.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/20 13:16:18 by yvillepo          #+#    #+#             */
+/*   Updated: 2018/03/20 13:17:11 by yvillepo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rtv1.h"
 
 t_vect	*new_vect(double x, double y, double z)
@@ -8,16 +20,6 @@ t_vect	*new_vect(double x, double y, double z)
 	new->x = x;
 	new->y = y;
 	new->z = z;
-	return (new);
-}
-
-t_point	*new_point(double x, double y)
-{
-	t_point	*new;
-
-	new = ft_memalloc(sizeof(*new));
-	new->x = x;
-	new->y = y;
 	return (new);
 }
 
@@ -34,9 +36,9 @@ void	free_tab(char **tabstr)
 	*tabstr = NULL;
 }
 
-int             len_tabstr(char **tabstr)
+int		len_tabstr(char **tabstr)
 {
-	int             i;
+	int	i;
 
 	i = 0;
 	while (*tabstr)
