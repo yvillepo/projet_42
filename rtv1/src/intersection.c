@@ -12,17 +12,6 @@
 
 #include "rtv1.h"
 
-static void		calc_diir(t_mlx *mlx, t_vect *dir, int i, int j)
-{
-	t_vect	uv;
-
-	uv.x = -(mlx->h / 2) + mlx->pitch * i;
-	uv.y = +(mlx->h / 2) - mlx->pitch * j;
-	dir->x = uv.x - mlx->camera_pos->x;
-	dir->y = uv.y - mlx->camera_pos->y;
-	dir->z = 1;
-}
-
 static void		calc_dir(t_mlx *mlx, t_vect *dir, double x, double y)
 {
 	t_vect	uv;
@@ -31,7 +20,7 @@ static void		calc_dir(t_mlx *mlx, t_vect *dir, double x, double y)
 	t_vect	*k;
 
 	uv.x = -(mlx->h / 2) + mlx->pitch * x;
-	uv.y = -(mlx->h / 2) + mlx->pitch * y;
+	uv.y = +(mlx->h / 2) - mlx->pitch * y;
 	k = mlx->camera_dir;
 	v_unit(k);
 	j = new_vect(0, 1, 0);
