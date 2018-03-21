@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:32:33 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/20 11:35:45 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:01:19 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		calc_dir(t_mlx *mlx, t_vect *dir, double x, double y)
 	t_vect	*k;
 
 	uv.x = -(mlx->h / 2) + mlx->pitch * x;
-	uv.y = +(mlx->h / 2) - mlx->pitch * y;
+	uv.y = -(mlx->h / 2) + mlx->pitch * y;
 	k = mlx->camera_dir;
 	v_unit(k);
 	j = new_vect(0, 1, 0);
@@ -31,6 +31,8 @@ static void		calc_dir(t_mlx *mlx, t_vect *dir, double x, double y)
 	dir->x = uv.x * i->x + uv.y * j->x + k->x;
 	dir->y = uv.x * i->y + uv.y * j->y + k->y;
 	dir->z = uv.x * i->z + uv.y * j->z + k->z;
+	free(i);
+	free(j);
 	v_unit(dir);
 }
 

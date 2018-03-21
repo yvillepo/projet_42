@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 13:11:04 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/20 13:12:13 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:35:09 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,14 @@ void	rotate_y(t_vect *p, double a)
 	p->x = z * sin(a) + x * cos(a);
 }
 
-void	rotation(t_vect *v, t_vect *axe, double angle)
+void	rotate_xyz(t_vect *p, double a, int axe)
 {
-
+	if (axe == 'x' || axe == 'X')
+		rotate_x(p, a);
+	else if (axe == 'y' || axe == 'Y')
+		rotate_y(p, a);
+	else if (axe == 'z' || axe == 'Z')
+		rotate_z(p, a);
+	else
+		exit_error("rotate_xyz : pb axe");
 }

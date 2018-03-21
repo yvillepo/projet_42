@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:31:11 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/20 12:58:54 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:09:00 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ static double	calc_a(t_cyl *cyl, t_line *l, double k)
 				cyl->dir->y * cyl->dir->z * l->dir->y * l->dir->z)));
 }
 
+static double	calc_b(t_cyl *cyl, t_line *l, double k, t_vect *d)
+{
+	return (2 * (d->x * l->dir->x + d->y * l->dir->y + d->z * l->dir->z) - k *
+		(2 * (cyl->dir->x * cyl->dir->x * l->dir->x * d->x +
+		cyl->dir->y * cyl->dir->y * l->dir->y * d->y +
+		cyl->dir->z * cyl->dir->z * l->dir->z * d->z +
+		cyl->dir->x * cyl->dir->y * (l->dir->x * d->y + l->dir->y * d->x) +
+		cyl->dir->x * cyl->dir->z * (l->dir->x * d->z + l->dir->z * d->x) +
+		cyl->dir->y * cyl->dir->z * (l->dir->y * d->z + l->dir->z * d->y))));
+}
+
 double			inter_cyl(t_cyl *cyl, t_line *l)
 {
 	t_vect	*d;
@@ -57,13 +68,7 @@ double			inter_cyl(t_cyl *cyl, t_line *l)
 	k = 1 / (cyl->dir->x * cyl->dir->x + cyl->dir->y * cyl->dir->y +
 		cyl->dir->z * cyl->dir->z);
 	a = calc_a(cyl, l, k);
-	b = 2 * (d->x * l->dir->x + d->y * l->dir->y + d->z * l->dir->z) - k *
-		(2 * (cyl->dir->x * cyl->dir->x * l->dir->x * d->x +
-		cyl->dir->y * cyl->dir->y * l->dir->y * d->y +
-		cyl->dir->z * cyl->dir->z * l->dir->z * d->z +
-		cyl->dir->x * cyl->dir->y * (l->dir->x * d->y + l->dir->y * d->x) +
-		cyl->dir->x * cyl->dir->z * (l->dir->x * d->z + l->dir->z * d->x) +
-		cyl->dir->y * cyl->dir->z * (l->dir->y * d->z + l->dir->z * d->y)));
+	b = calc_b(cyl, l, k, d);
 	c = d->x * d->x * (1 - k * cyl->dir->x * cyl->dir->x) +
 	d->y * d->y * (1 - k * cyl->dir->y * cyl->dir->y) +
 	d->z * d->z * (1 - k * cyl->dir->z * cyl->dir->z) - 2 * k *
@@ -71,11 +76,4 @@ double			inter_cyl(t_cyl *cyl, t_line *l)
 	cyl->dir->x * cyl->dir->z * d->x * d->z +
 	cyl->dir->y * cyl->dir->z * d->y * d->z) - cyl->r * cyl->r;
 	return (solv_2nd(a, b, c));
-}
-
-void			print_cyl(t_cyl *cyl)
-{
-	printf("cyl :\ndir : %f %f %f\npositon : %f %f %f\nR = %f\n",
-			cyl->dir->x, cyl->dir->y,
-			cyl->dir->z, cyl->pos->x, cyl->pos->y, cyl->pos->z, cyl->r);
 }

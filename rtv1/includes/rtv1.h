@@ -6,7 +6,7 @@
 /*   By: yvillepo <yvillepo@student.44.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 01:56:28 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/20 13:06:46 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:03:01 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,10 @@ void				read_camera(t_mlx *mlx, int fd);
 double				intersec_unit(t_object *obj, t_line *line);
 int					is_shadow(t_mlx *mlx, t_line *cam, double d);
 void				read_light(t_mlx *mlx, int fd);
+void				rotate_xyz(t_vect *p, double a, int axe);
+void				rot_obj_x(t_object *obj, double angle, int axe);
+void				read_rot(t_mlx *mlx, char *line, int fd);
 
-void			print_object(t_mlx *mlx);
+void				print_object(t_mlx *mlx);
 
 #endif

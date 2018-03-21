@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:38:52 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/20 11:38:54 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:09:45 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ int				is_shadow(t_mlx *mlx, t_line *cam, double d)
 	free(light.dir);
 	return (res);
 }
-

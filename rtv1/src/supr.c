@@ -6,7 +6,7 @@
 /*   By: yvillepo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 11:42:57 by yvillepo          #+#    #+#             */
-/*   Updated: 2018/03/20 13:14:56 by yvillepo         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:08:10 by yvillepo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,11 @@ void		print_sphere(t_sphere *sphere)
 {
 	printf("sphere :\ncentre : %f %f %f\nR: %f\n", sphere->centre->x,
 			sphere->centre->y, sphere->centre->z, sphere->rayon);
+}
+
+void			print_cyl(t_cyl *cyl)
+{
+	printf("cyl :\ndir : %f %f %f\npositon : %f %f %f\nR = %f\n",
+			cyl->dir->x, cyl->dir->y,
+			cyl->dir->z, cyl->pos->x, cyl->pos->y, cyl->pos->z, cyl->r);
 }
