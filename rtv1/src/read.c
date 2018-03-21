@@ -72,6 +72,7 @@ void			parse(t_mlx *mlx, char *file)
 
 	fd = open(file, O_RDONLY);
 	read_camera(mlx, fd);
+	read_light(mlx, fd);
 	while (get_next_line(fd, &line))
 	{
 		read_object(mlx, line, fd);

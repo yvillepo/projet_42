@@ -71,10 +71,8 @@ static t_color	calc(t_mlx *mlx, t_vect *dir, t_list *object)
 		}
 		object = object->next;
 	}
-/*	line->dir = calc_point(&line, t);
-	line->origin = mlx->light;
-	if (shadow(object->content, mlx->light, line, t)))
-		return (0); */
+	if (is_shadow(mlx, &line, min))
+		return (((t_color)(unsigned int)(0)));
 	return (color);
 }
 

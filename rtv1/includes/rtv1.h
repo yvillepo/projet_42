@@ -182,7 +182,10 @@ t_vect				*v_sub(t_vect *u1, t_vect *u2);
 double				v_mult(t_vect *u1, t_vect *u2);
 double				deg_to_rad(double a);
 t_vect				*v_cross(t_vect *u1, t_vect *u2);
-void			read_camera(t_mlx *mlx, int fd);
+void				read_camera(t_mlx *mlx, int fd);
+double				intersec_unit(t_object *obj, t_line *line);
+int					is_shadow(t_mlx *mlx, t_line *cam, double d);
+void				read_light(t_mlx *mlx, int fd);
 
 void			print_object(t_mlx *mlx);
 

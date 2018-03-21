@@ -16,4 +16,10 @@ void	read_camera(t_mlx *mlx, int fd)
 {
 	mlx->camera_pos = read_vect(fd);
 	mlx->camera_dir = read_vect(fd);
+	v_unit(mlx->camera_dir);
+}
+
+void	read_light(t_mlx *mlx, int fd)
+{
+	mlx->light = read_vect(fd);
 }

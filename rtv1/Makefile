@@ -32,7 +32,8 @@ SRC_NAME = main.c \
 		   cone.c \
 		   vect.c \
 		   supr.c \
-		   camera.c
+		   camera.c \
+		   light.c
 
 OBJ_PATH = ./obj/
 CPPFLAGS = -Iincludes
