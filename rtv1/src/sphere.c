@@ -34,7 +34,6 @@ double		inter_sphere(t_sphere *sphere, t_line *line)
 {
 	double	a;
 	double	b;
-	double	delta;
 	double	t;
 	t_vect	*v;
 
@@ -44,13 +43,8 @@ double		inter_sphere(t_sphere *sphere, t_line *line)
 	a = line->dir->x * line->dir->x + line->dir->y * line->dir->y
 		+ line->dir->z * line->dir->z;
 	b = 2 * (line->dir->x * v->x + line->dir->y * v->y + line->dir->z * v->z);
-	delta = b * b - 4 * a * (v->x * v->x + v->y * v->y + v->z * v->z -
-			sphere->rayon * sphere->rayon);
+	t = solv_2nd(a, b, (v->x * v->x + v->y * v->y + v->z * v->z -
+			sphere->rayon * sphere->rayon));
 	free(v);
-	if (delta >= 0)
-	{
-		t = (-b - sqrt(delta)) / (2 * a);
-		return (t);
-	}
-	return (-1);
+	return (t);
 }

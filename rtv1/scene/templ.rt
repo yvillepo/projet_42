@@ -1,8 +1,8 @@
 0 0 0.5
 0 -0.20 1
 sphere
-0 -1 2 
-0.25
+0 -0.9 2
+0.2
 DDDDDD
 sphere
 -2.5 -2.5 4
@@ -70,6 +70,6 @@ cyl
 DDDDDD
 cone
 0.5 1 0
-0 0 7
+0 0 4
 30
 DDDDDD
