@@ -188,7 +188,10 @@ int					is_shadow(t_mlx *mlx, t_line *cam, double d);
 void				read_light(t_mlx *mlx, int fd);
 void				rotate_xyz(t_vect *p, double a, int axe);
 void				rot_obj_x(t_object *obj, double angle, int axe);
-void				read_rot(t_mlx *mlx, char *line, int fd);
+void				read_rot(t_mlx *mlx, char *line, int fd, int i);
+double				v_scale(t_vect *u, t_vect *v);
+t_color				mult_color(t_color color, double mult);
+double				calc_light(t_mlx *mlx, t_line *cam, t_object *obj, double t);
 
 void				print_object(t_mlx *mlx);
 

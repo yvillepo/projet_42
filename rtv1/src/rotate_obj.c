@@ -23,7 +23,7 @@ void	rot_obj(t_object *obj, double angle, int axe)
 		rotate_xyz(((t_cone*)obj->form)->dir, angle, axe);
 }
 
-void	read_rot(t_mlx *mlx, char *line, int fd)
+void	read_rot(t_mlx *mlx, char *line, int fd, int i)
 {
 	char 	**data;
 	t_list	*elem;
@@ -31,7 +31,7 @@ void	read_rot(t_mlx *mlx, char *line, int fd)
 	data = ft_strsplit(line, ' ');
 	if (len_tabstr(data) < 4)
 		exit_error("pb rotation");
-	elem = ft_lst_nelem(mlx->object, ft_atoi(data[1]));
+	elem = ft_lst_nelem(mlx->object, i - ft_atoi(data[1]));
 	rot_obj(elem->content, ft_atoi(data[3]), data[2][0]);
 	free_tabstr(&data);
 }

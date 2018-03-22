@@ -23,6 +23,20 @@ t_vect	*new_vect(double x, double y, double z)
 	return (new);
 }
 
+t_color	mult_color(t_color color, double mult)
+{
+	if (mult < 0)
+		mult = 0;
+	if (mult > 1)
+		mult = 1;
+	if (mult == 0)
+		printf ("noir\n");
+	color.rgb[0] *= mult;
+	color.rgb[1] *= mult;
+	color.rgb[2] *= mult;
+	return (color);
+}
+
 void	free_tab(char **tabstr)
 {
 	if (!tabstr)

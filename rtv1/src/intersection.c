@@ -57,10 +57,10 @@ static t_color	calc(t_mlx *mlx, t_vect *dir, t_list *object)
 	double			min;
 	double			t;
 	t_line			line;
-	t_color			color;
+	t_object		*obj;
 
+	obj = 0;
 	min = 100000000000000000;
-	color.color = 0;
 	line.origin = mlx->camera_pos;
 	line.dir = dir;
 	while (object)
@@ -68,14 +68,16 @@ static t_color	calc(t_mlx *mlx, t_vect *dir, t_list *object)
 		t = intersec_unit(object->content, &line);
 		if (t < min && t >= 0)
 		{
-			color = ((t_object*)object->content)->color;
+			obj = (t_object*)object->content;
 			min = t;
 		}
 		object = object->next;
 	}
 	if (is_shadow(mlx, &line, min))
 		return (((t_color)(unsigned int)(0)));
-	return (color);
+	if (obj)
+		return (mult_color(obj->color, 0.10 + calc_light(mlx, &line, obj, min)));
+	return (((t_color)(unsigned int)0));
 }
 
 t_color			intersec(t_mlx *mlx, int i, int j, t_list *object)

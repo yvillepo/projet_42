@@ -24,6 +24,11 @@ double		v_l(t_vect *v)
 	return (sqrt(v->x * v->x + v->y * v->y + v->z * v->z));
 }
 
+double		v_scale(t_vect *u, t_vect *v)
+{
+	return(u->x * v->x + u->y * u->y + u->z * u->z);
+}
+
 double		calc_angle(t_vect *v1, t_vect *v2)
 {
 	return (acos(v_mult(v1, v2) / (v_l(v1) * v_l(v2))));
