@@ -6,7 +6,7 @@
 #    By: pbondoer <pbondoer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2018/01/09 16:42:23 by yvillepo         ###   ########.fr        #
+#    Updated: 2017/12/19 11:10:29 by yvillepo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror 
 
 # mlx library
-FRAMEWORK	=  -framework OpenGL -framework AppKit
+MLX_LNK	= -l mlx -framework OpenGL -framework AppKit
 
 # ft library
 FT		= ./libft/
@@ -41,10 +41,6 @@ FT_LIB	= $(addprefix $(FT),libft.a)
 FT_INC	= -I ./libft
 FT_LNK	= -L ./libft -l ft
 
-MLX = ./minilibx_macos/
-MLX_LIB	= $(addprefix $(MLX),libft.a)
-MLX_INC = -I ./minilibx_macos
-MLX_LNK = -L ./minilibx_macos -l mlx
 # directories
 SRCDIR	= ./src/
 INCDIR	= ./includes/
@@ -61,20 +57,15 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 $(FT_LIB):
 	@make -C $(FT)
 
-$(MLX_LIB):
-	@make -C $(MLX)
-
-$(NAME): $(OBJ) $(FT_LIB) $(MLX_LIB)
-	@$(CC) $(OBJ) $(FRAMEWORK) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
+$(NAME): $(OBJ) $(FT_LIB)
+	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR)
 	@make -C $(FT) clean
-	@make -C $(MLX) clean
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make -C $(FT) fclean
-	@make -C $(MLX) clean
 
 re: fclean all
