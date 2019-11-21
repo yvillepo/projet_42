@@ -1,0 +1,32 @@
+position cam  : 0 0 0
+direction com  : 0 0 1
+position light : 4 0 -1
+
+object    : sphere
+pos       : 0 0 6
+rayon     : 1.5
+color obj : 00ff00
+
+object    : cyl
+dir       : 0 1 0
+pos       : -3.5 0 6
+rayon     : 1.5
+color obj : ff0000
+
+object    : plan
+dir       : 0 1 0
+pos       : 0 -1 0
+color obj : 0000ff
+
+object    : cone
+dir       : -1 1 0
+pos       : 0 0 6
+angle     : 30
+color     : 00ffff
+
+rotation obj 2 (cylindre) de 30 degre axe z :
+R 2 z 30
+
+translation obj 4 (cone) de (3.5 0 0) :
+T 4
+3.5 0 0
